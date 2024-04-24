@@ -1,7 +1,6 @@
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.android.hilt)
-    alias(libs.plugins.ksp)
+    alias(libs.plugins.steamhunter.android.library)
+    alias(libs.plugins.steamhunter.android.hilt)
 }
 
 
@@ -10,8 +9,7 @@ android {
 }
 
 dependencies {
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.compiler)
+    ksp(libs.hilt.ext.compiler)
 
     implementation(libs.androidx.tracing.ktx)
     implementation(libs.androidx.work.ktx)

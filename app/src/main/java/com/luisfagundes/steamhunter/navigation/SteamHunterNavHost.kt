@@ -6,7 +6,7 @@ import androidx.navigation.compose.NavHost
 import com.luisfagundes.steamhunter.ui.SteamHunterAppState
 
 @Composable
-fun NiaNavHost(
+fun SteamHunterNavHost(
     appState: SteamHunterAppState,
     onShowSnackbar: suspend (String, String?) -> Boolean,
     modifier: Modifier = Modifier,

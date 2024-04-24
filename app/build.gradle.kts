@@ -1,12 +1,13 @@
+import com.luisfagundes.SteamHunterBuildType
+
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.android.hilt)
+    alias(libs.plugins.steamhunter.android.application)
+    alias(libs.plugins.steamhunter.android.application.flavors)
+    alias(libs.plugins.steamhunter.android.hilt)
     alias(libs.plugins.ksp)
 }
 
 android {
-    namespace = "com.luisfagundes.steamhunter"
     compileSdk = 34
 
     defaultConfig {
@@ -23,51 +24,49 @@ android {
     }
 
     buildTypes {
+        debug {
+            applicationIdSuffix = SteamHunterBuildType.DEBUG.applicationIdSuffix
+        }
         release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            isMinifyEnabled = true
+            applicationIdSuffix = SteamHunterBuildType.RELEASE.applicationIdSuffix
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            signingConfig = signingConfigs.named("debug").get()
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
+
     packaging {
         resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes.add("/META-INF/{AL2.0,LGPL2.1}")
         }
     }
+
+    namespace = "com.luisfagundes.steamhunter"
 }
 
 dependencies {
     implementation(projects.sync.work)
+    implementation(projects.core.data)
+    implementation(projects.core.model)
+    implementation(projects.core.common)
+    implementation(projects.core.network)
+    implementation(projects.core.designsystem)
+    implementation(projects.core.ui)
+    implementation(projects.feature.games)
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
+
     implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.navigation.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
+    implementation(libs.androidx.compose.material3.adaptive)
+    implementation(libs.androidx.compose.material3.adaptive.layout)
+    implementation(libs.androidx.compose.material3.adaptive.navigation)
     implementation(libs.androidx.compose.material3.windowSizeClass)
-    implementation(libs.androidx.compose.runtime.tracing)
-    implementation(libs.androidx.tracing.ktx)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.core.splashscreen)
+    implementation(libs.androidx.hilt.navigation.compose)
 
-    implementation(libs.hilt.android)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.coil.kt)
+
     ksp(libs.hilt.compiler)
 
     testImplementation(libs.junit)
@@ -75,6 +74,4 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
 }

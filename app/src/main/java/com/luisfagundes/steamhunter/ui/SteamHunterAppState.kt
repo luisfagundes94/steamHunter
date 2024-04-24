@@ -6,27 +6,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.navigation.NavController
 import androidx.navigation.NavDestination
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navOptions
-import androidx.tracing.trace
-import com.google.samples.apps.nowinandroid.core.data.util.NetworkMonitor
-import com.google.samples.apps.nowinandroid.core.data.util.TimeZoneMonitor
-import com.google.samples.apps.nowinandroid.core.ui.TrackDisposableJank
-import com.google.samples.apps.nowinandroid.feature.bookmarks.navigation.BOOKMARKS_ROUTE
-import com.google.samples.apps.nowinandroid.feature.bookmarks.navigation.navigateToBookmarks
-import com.google.samples.apps.nowinandroid.feature.foryou.navigation.FOR_YOU_ROUTE
-import com.google.samples.apps.nowinandroid.feature.foryou.navigation.navigateToForYou
-import com.google.samples.apps.nowinandroid.feature.interests.navigation.INTERESTS_ROUTE
-import com.google.samples.apps.nowinandroid.feature.interests.navigation.navigateToInterests
-import com.google.samples.apps.nowinandroid.feature.search.navigation.navigateToSearch
-import com.google.samples.apps.nowinandroid.navigation.TopLevelDestination.BOOKMARKS
-import com.google.samples.apps.nowinandroid.navigation.TopLevelDestination.FOR_YOU
-import com.google.samples.apps.nowinandroid.navigation.TopLevelDestination.INTERESTS
+import com.luisfagundes.data.utils.NetworkMonitor
+import com.luisfagundes.data.utils.TimeZoneMonitor
+import com.luisfagundes.games.navigation.GAMES_ROUTE
 import com.luisfagundes.steamhunter.navigation.TopLevelDestination
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted
@@ -42,7 +28,6 @@ fun rememberSteamHunterAppState(
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
     navController: NavHostController = rememberNavController(),
 ): SteamHunterAppState {
-    NavigationTrackingSideEffect(navController)
     return remember(
         navController,
         coroutineScope,
@@ -74,17 +59,14 @@ class SteamHunterAppState(
 
     val currentTopLevelDestination: TopLevelDestination?
         @Composable get() = when (currentDestination?.route) {
-            FOR_YOU_ROUTE -> FOR_YOU
-            BOOKMARKS_ROUTE -> BOOKMARKS
-            INTERESTS_ROUTE -> INTERESTS
+            GAMES_ROUTE -> TopLevelDestination.GAMES
+            GAMES_ROUTE -> TopLevelDestination.PROFILE
+            GAMES_ROUTE -> TopLevelDestination.ABOUT
             else -> null
         }
 
     val shouldShowBottomBar: Boolean
         get() = windowSizeClass.widthSizeClass == WindowWidthSizeClass.Compact
-
-    val shouldShowNavRail: Boolean
-        get() = !shouldShowBottomBar
 
     val isOffline = networkMonitor.isOnline
         .map(Boolean::not)
@@ -104,43 +86,12 @@ class SteamHunterAppState(
         )
 
     fun navigateToTopLevelDestination(topLevelDestination: TopLevelDestination) {
-        trace("Navigation: ${topLevelDestination.name}") {
-            val topLevelNavOptions = navOptions {
-                // Pop up to the start destination of the graph to
-                // avoid building up a large stack of destinations
-                // on the back stack as users select items
-                popUpTo(navController.graph.findStartDestination().id) {
-                    saveState = true
-                }
-                // Avoid multiple copies of the same destination when
-                // reselecting the same item
-                launchSingleTop = true
-                // Restore state when reselecting a previously selected item
-                restoreState = true
-            }
-
             when (topLevelDestination) {
-                FOR_YOU -> navController.navigateToForYou(topLevelNavOptions)
-                BOOKMARKS -> navController.navigateToBookmarks(topLevelNavOptions)
-                INTERESTS -> navController.navigateToInterests(null, topLevelNavOptions)
+                TopLevelDestination.GAMES -> navController.navigateToForYou(topLevelNavOptions)
+                TopLevelDestination.PROFILE  -> navController.navigateToBookmarks(topLevelNavOptions)
+                TopLevelDestination.ABOUT  -> navController.navigateToInterests(null, topLevelNavOptions)
             }
         }
-    }
 
     fun navigateToSearch() = navController.navigateToSearch()
-}
-
-@Composable
-private fun NavigationTrackingSideEffect(navController: NavHostController) {
-    TrackDisposableJank(navController) { metricsHolder ->
-        val listener = NavController.OnDestinationChangedListener { _, destination, _ ->
-            metricsHolder.state?.putState("Navigation", destination.route.toString())
-        }
-
-        navController.addOnDestinationChangedListener(listener)
-
-        onDispose {
-            navController.removeOnDestinationChangedListener(listener)
-        }
-    }
 }
