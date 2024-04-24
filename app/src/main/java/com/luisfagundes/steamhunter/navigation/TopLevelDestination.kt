@@ -1,29 +1,29 @@
 package com.luisfagundes.steamhunter.navigation
 
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.luisfagundes.designsystem.icon.SteamHunterIcons
+import com.luisfagundes.games.R as gamesR
+import com.luisfagundes.profile.R as profileR
+import com.luisfagundes.about.R as aboutR
 
 enum class TopLevelDestination(
     val selectedIcon: ImageVector,
-    val unselectedIcon: ImageVector,
     val iconTextId: Int,
     val titleTextId: Int,
 ) {
     GAMES(
-        selectedIcon = NiaIcons.Upcoming,
-        unselectedIcon = NiaIcons.UpcomingBorder,
-        iconTextId = forYouR.string.feature_foryou_title,
-        titleTextId = R.string.app_name,
+        selectedIcon = SteamHunterIcons.Games,
+        iconTextId = gamesR.string.feature_games_title,
+        titleTextId = gamesR.string.feature_games_title,
     ),
     PROFILE(
-        selectedIcon = NiaIcons.Bookmarks,
-        unselectedIcon = NiaIcons.BookmarksBorder,
-        iconTextId = bookmarksR.string.feature_bookmarks_title,
-        titleTextId = bookmarksR.string.feature_bookmarks_title,
+        selectedIcon = SteamHunterIcons.Profile,
+        iconTextId = profileR.string.feature_profile_title,
+        titleTextId = profileR.string.feature_profile_title,
     ),
     ABOUT(
-        selectedIcon = NiaIcons.Grid3x3,
-        unselectedIcon = NiaIcons.Grid3x3,
-        iconTextId = searchR.string.feature_search_interests,
-        titleTextId = searchR.string.feature_search_interests,
+        selectedIcon = SteamHunterIcons.About,
+        iconTextId = aboutR.string.feature_about_title,
+        titleTextId = aboutR.string.feature_about_title,
     ),
 }

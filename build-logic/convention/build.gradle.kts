@@ -62,10 +62,6 @@ gradlePlugin {
             id = "steamhunter.android.room"
             implementationClass = "AndroidRoomConventionPlugin"
         }
-        register("androidFlavors") {
-            id = "steamhunter.android.application.flavors"
-            implementationClass = "AndroidApplicationFlavorsConventionPlugin"
-        }
         register("jvmLibrary") {
             id = "steamhunter.jvm.library"
             implementationClass = "JvmLibraryConventionPlugin"

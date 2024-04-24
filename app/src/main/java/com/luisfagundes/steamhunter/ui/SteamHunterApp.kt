@@ -180,7 +180,7 @@ private fun SteamHunterBottomBar(
                 onClick = { onNavigateToDestination(destination) },
                 icon = {
                     Icon(
-                        imageVector = destination.unselectedIcon,
+                        imageVector = destination.selectedIcon,
                         contentDescription = null,
                     )
                 },

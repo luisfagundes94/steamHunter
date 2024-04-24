@@ -7,12 +7,18 @@ import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.NavDestination
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navOptions
+import com.luisfagundes.about.navigation.navigateToAbout
 import com.luisfagundes.data.utils.NetworkMonitor
 import com.luisfagundes.data.utils.TimeZoneMonitor
 import com.luisfagundes.games.navigation.GAMES_ROUTE
+import com.luisfagundes.games.navigation.navigateToGames
+import com.luisfagundes.profile.navigation.navigateToProfile
+import com.luisfagundes.search.navigation.navigateToSearch
 import com.luisfagundes.steamhunter.navigation.TopLevelDestination
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted
@@ -76,6 +82,14 @@ class SteamHunterAppState(
             initialValue = false,
         )
 
+    val topLevelNavOptions = navOptions {
+        popUpTo(navController.graph.findStartDestination().id) {
+            saveState = true
+        }
+        launchSingleTop = true
+        restoreState = true
+    }
+
     val topLevelDestinations: List<TopLevelDestination> = TopLevelDestination.entries
 
     val currentTimeZone = timeZoneMonitor.currentTimeZone
@@ -87,9 +101,9 @@ class SteamHunterAppState(
 
     fun navigateToTopLevelDestination(topLevelDestination: TopLevelDestination) {
             when (topLevelDestination) {
-                TopLevelDestination.GAMES -> navController.navigateToForYou(topLevelNavOptions)
-                TopLevelDestination.PROFILE  -> navController.navigateToBookmarks(topLevelNavOptions)
-                TopLevelDestination.ABOUT  -> navController.navigateToInterests(null, topLevelNavOptions)
+                TopLevelDestination.GAMES -> navController.navigateToGames(topLevelNavOptions)
+                TopLevelDestination.PROFILE  -> navController.navigateToProfile(topLevelNavOptions)
+                TopLevelDestination.ABOUT  -> navController.navigateToAbout(topLevelNavOptions)
             }
         }
 

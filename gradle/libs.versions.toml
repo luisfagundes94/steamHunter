@@ -34,13 +34,14 @@ protobuf = "3.25.2"
 protobufPlugin = "0.9.4"
 retrofit = "2.11.0"
 retrofitKotlinxSerializationJson = "1.0.0"
-ksp = "1.9.22-1.0.18"
+ksp = "1.9.23-1.0.20"
 room = "2.6.1"
 jetbrainsKotlinJvm = "1.9.0"
 jacoco = "0.8.7"
 turbine = "1.0.0"
 androidxComposeRuntimeTracing = "1.0.0-beta01"
 androidxTracing = "1.3.0-alpha02"
+kotlinVersion = "1.9.0"
 
 [libraries]
 accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist" }
@@ -135,4 +136,5 @@ steamhunter-android-library = { id = "steamhunter.android.library", version = "u
 steamhunter-android-library-compose = { id = "steamhunter.android.library.compose", version = "unspecified" }
 steamhunter-android-application-flavors =  { id = "steamhunter.android.application.flavors", version = "unspecified" }
 steamhunter-jvm-library = { id = "steamhunter.jvm.library", version = "unspecified" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinVersion" }
 

@@ -2,7 +2,7 @@ import com.luisfagundes.SteamHunterBuildType
 
 plugins {
     alias(libs.plugins.steamhunter.android.application)
-    alias(libs.plugins.steamhunter.android.application.flavors)
+    alias(libs.plugins.steamhunter.android.application.compose)
     alias(libs.plugins.steamhunter.android.hilt)
     alias(libs.plugins.ksp)
 }
@@ -46,13 +46,18 @@ android {
 
 dependencies {
     implementation(projects.sync.work)
+
     implementation(projects.core.data)
     implementation(projects.core.model)
     implementation(projects.core.common)
     implementation(projects.core.network)
     implementation(projects.core.designsystem)
     implementation(projects.core.ui)
+
     implementation(projects.feature.games)
+    implementation(projects.feature.profile)
+    implementation(projects.feature.about)
+    implementation(projects.feature.search)
 
 
     implementation(libs.androidx.activity.compose)

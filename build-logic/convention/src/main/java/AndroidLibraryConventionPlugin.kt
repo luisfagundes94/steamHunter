@@ -1,5 +1,4 @@
 import com.android.build.gradle.LibraryExtension
-import com.luisfagundes.configureFlavors
 import com.luisfagundes.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -18,7 +17,6 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                 configureKotlinAndroid(this)
                 defaultConfig.targetSdk = 34
                 testOptions.animationsDisabled = true
-                configureFlavors(this)
                 resourcePrefix = path.split("""\W""".toRegex()).drop(1).distinct().joinToString(separator = "_").lowercase() + "_"
             }
             dependencies {
