@@ -48,6 +48,8 @@ dependencies {
     implementation(projects.sync.work)
 
     implementation(projects.core.data)
+    implementation(projects.core.datastore)
+    implementation(projects.core.protodata)
     implementation(projects.core.model)
     implementation(projects.core.common)
     implementation(projects.core.network)

@@ -5,11 +5,12 @@ plugins {
 }
 
 android {
-    namespace = "com.luisfagundes.data"
+    namespace = "com.luisfagundes.steamhunter.data"
 }
 
 dependencies {
     api(projects.core.network)
     api(projects.core.common)
     api(projects.core.model)
+    api(projects.core.datastore)
 }
