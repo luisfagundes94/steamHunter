@@ -1,5 +1,7 @@
 package com.luisfagundes.data.di
 
+import com.luisfagundes.data.repository.OfflineFirstUserDataRepository
+import com.luisfagundes.data.repository.UserDataRepository
 import com.luisfagundes.data.utils.ConnectivityManagerNetworkMonitor
 import com.luisfagundes.data.utils.NetworkMonitor
 import com.luisfagundes.data.utils.TimeZoneBroadcastMonitor
@@ -19,4 +21,9 @@ abstract class DataModule {
 
     @Binds
     internal abstract fun binds(impl: TimeZoneBroadcastMonitor): TimeZoneMonitor
+
+    @Binds
+    internal abstract fun bindsUserDataRepository(
+        userDataRepository: OfflineFirstUserDataRepository,
+    ): UserDataRepository
 }
