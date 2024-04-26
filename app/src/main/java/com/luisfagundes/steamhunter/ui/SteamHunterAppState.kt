@@ -82,14 +82,6 @@ class SteamHunterAppState(
             initialValue = false,
         )
 
-    val topLevelNavOptions = navOptions {
-        popUpTo(navController.graph.findStartDestination().id) {
-            saveState = true
-        }
-        launchSingleTop = true
-        restoreState = true
-    }
-
     val topLevelDestinations: List<TopLevelDestination> = TopLevelDestination.entries
 
     val currentTimeZone = timeZoneMonitor.currentTimeZone
@@ -100,12 +92,20 @@ class SteamHunterAppState(
         )
 
     fun navigateToTopLevelDestination(topLevelDestination: TopLevelDestination) {
-            when (topLevelDestination) {
-                TopLevelDestination.GAMES -> navController.navigateToGames(topLevelNavOptions)
-                TopLevelDestination.PROFILE  -> navController.navigateToProfile(topLevelNavOptions)
-                TopLevelDestination.ABOUT  -> navController.navigateToAbout(topLevelNavOptions)
+        val topLevelNavOptions = navOptions {
+            popUpTo(navController.graph.findStartDestination().id) {
+                saveState = true
             }
+            launchSingleTop = true
+            restoreState = true
         }
+
+        when (topLevelDestination) {
+            TopLevelDestination.GAMES -> navController.navigateToGames(topLevelNavOptions)
+            TopLevelDestination.PROFILE -> navController.navigateToProfile(topLevelNavOptions)
+            TopLevelDestination.ABOUT -> navController.navigateToAbout(topLevelNavOptions)
+        }
+    }
 
     fun navigateToSearch() = navController.navigateToSearch()
 }
