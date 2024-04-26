@@ -55,9 +55,22 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         var uiState: MainActivityUiState by mutableStateOf(Loading)
-        uiState = updateUiState(uiState)
 
-        splashScreen.handleSplashScreenCondition(uiState)
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState
+                    .onEach { uiState = it }
+                    .collect()
+            }
+        }
+
+        splashScreen.setKeepOnScreenCondition {
+            when (uiState) {
+                Loading -> true
+                is Success -> false
+            }
+        }
+
         enableEdgeToEdge()
 
         setContent {
@@ -96,29 +109,6 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-    }
-
-    private fun SplashScreen.handleSplashScreenCondition(
-        uiState: MainActivityUiState
-    ) {
-        this.setKeepOnScreenCondition {
-            when (uiState) {
-                Loading -> true
-                is Success -> false
-            }
-        }
-    }
-
-    private fun updateUiState(uiState: MainActivityUiState): MainActivityUiState {
-        var uiState1 = uiState
-        lifecycleScope.launch {
-            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState
-                    .onEach { uiState1 = it }
-                    .collect()
-            }
-        }
-        return uiState1
     }
 }
 
