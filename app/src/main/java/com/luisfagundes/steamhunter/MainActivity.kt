@@ -103,6 +103,7 @@ class MainActivity : ComponentActivity() {
             ) {
                 SteamHunterTheme(
                     darkTheme = darkTheme,
+                    androidTheme = false,
                     dynamicColor = false
                 ) {
                     SteamHunterApp(appState)
