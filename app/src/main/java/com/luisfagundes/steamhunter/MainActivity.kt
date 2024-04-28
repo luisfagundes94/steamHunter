@@ -15,7 +15,6 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -24,7 +23,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.luisfagundes.data.utils.NetworkMonitor
 import com.luisfagundes.data.utils.TimeZoneMonitor
 import com.luisfagundes.designsystem.theme.SteamHunterTheme
-import com.luisfagundes.model.DarkThemeConfig
+import com.luisfagundes.domain.model.DarkThemeConfig
 import com.luisfagundes.steamhunter.presentation.MainActivityUiState
 import com.luisfagundes.steamhunter.presentation.MainActivityUiState.Loading
 import com.luisfagundes.steamhunter.presentation.MainActivityUiState.Success

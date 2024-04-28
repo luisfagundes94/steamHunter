@@ -1,4 +1,4 @@
-package com.luisfagundes.model
+package com.luisfagundes.domain.model
 
 data class UserData(
     val darkThemeConfig: DarkThemeConfig,

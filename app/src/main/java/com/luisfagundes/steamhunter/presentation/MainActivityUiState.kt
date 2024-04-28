@@ -1,6 +1,6 @@
 package com.luisfagundes.steamhunter.presentation
 
-import com.luisfagundes.model.UserData
+import com.luisfagundes.domain.model.UserData
 
 sealed interface MainActivityUiState {
     data object Loading : MainActivityUiState

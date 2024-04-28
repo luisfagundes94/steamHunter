@@ -18,7 +18,6 @@ android {
 dependencies {
     api(libs.androidx.dataStore.core)
     api(projects.core.protodata)
-    api(projects.core.model)
 
     implementation(projects.core.common)
 }

@@ -1,8 +1,8 @@
 package com.luisfagundes.data.datasource
 
 import androidx.datastore.core.DataStore
-import com.luisfagundes.model.DarkThemeConfig
-import com.luisfagundes.model.UserData
+import com.luisfagundes.domain.model.DarkThemeConfig
+import com.luisfagundes.domain.model.UserData
 import com.luisfagundes.steamhunter.data.DarkThemeConfigProto
 import com.luisfagundes.steamhunter.data.UserPreferences
 import com.luisfagundes.steamhunter.data.copy

@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.steamhunter.android.library)
-    id("com.google.devtools.ksp")
 }
 
 android {
@@ -8,8 +7,6 @@ android {
 }
 
 dependencies {
-    api(projects.core.data)
-    api(projects.core.model)
-
+    implementation(libs.kotlinx.coroutines)
     implementation(libs.javax.inject)
 }
