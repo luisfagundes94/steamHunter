@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.steamhunter.android.library)
     alias(libs.plugins.steamhunter.android.hilt)
     id("kotlinx-serialization")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -10,6 +11,10 @@ android {
         buildConfig = true
     }
 }
+secrets {
+    defaultPropertiesFileName = "api.properties"
+}
+
 
 dependencies {
     api(libs.kotlinx.datetime)

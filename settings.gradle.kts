@@ -18,7 +18,6 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 rootProject.name = "SteamHunter"
 include(":app")
-include(":core:network")
 include(":core:data")
 include(":core:common")
 include(":sync:work")
@@ -32,3 +31,4 @@ include(":feature:about")
 include(":feature:search")
 include(":core:protodata")
 include(":core:datastore")
+include(":core:network")
