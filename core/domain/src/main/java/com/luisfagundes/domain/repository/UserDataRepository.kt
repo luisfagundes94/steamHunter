@@ -1,4 +1,4 @@
-package com.luisfagundes.data.repository
+package com.luisfagundes.domain.repository
 
 import com.luisfagundes.model.DarkThemeConfig
 import com.luisfagundes.model.UserData
