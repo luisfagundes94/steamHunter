@@ -13,11 +13,10 @@ This app uses [_**MVVM (Model-View-ViewModel)**_]([https://proandroiddev.com/mvi
 <img src="https://github.com/MuhammadKhoshnaw/BasicMVIApp/blob/master/.github/res/ComponentDiagram.svg" width=500 />
 
 # Build
-The `build-logic` folder defines project-specific convention plugins, used to keep a single
+The `build-logic` folder defines project-specific plugins, used to keep a single
 source of truth for common module configurations.
 
-This approach is heavily based on
-[https://developer.squareup.com/blog/herding-elephants/](https://developer.squareup.com/blog/herding-elephants/) and [https://github.com/jjohannes/idiomatic-gradle](https://github.com/jjohannes/idiomatic-gradle).
+This approach is based on [https://developer.squareup.com/blog/herding-elephants/](https://developer.squareup.com/blog/herding-elephants/) and [https://github.com/jjohannes/idiomatic-gradle](https://github.com/jjohannes/idiomatic-gradle) "guidelines".
 
 By setting up "shared" plugins in `build-logic`, we can avoid duplicated build script setup and messy `subproject` configurations. This module also includes a set of `Kotlin` files used to share logic between plugins themselves, which is useful for configuring Android components (libraries vs. applications) with common code.
 
