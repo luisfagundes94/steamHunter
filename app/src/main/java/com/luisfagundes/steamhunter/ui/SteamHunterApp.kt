@@ -119,7 +119,6 @@ internal fun SteamHunterApp(
                 ),
         ) {
             Column(Modifier.fillMaxSize()) {
-                // Show the top app bar on top level destinations.
                 val destination = appState.currentTopLevelDestination
                 val shouldShowTopAppBar = destination != null
                 if (destination != null) {

@@ -15,7 +15,7 @@ import com.luisfagundes.designsystem.theme.SteamHunterTheme
 import com.luisfagundes.designsystem.theme.ThemePreviews
 
 /**
- * Now in Android navigation bar item with icon and label content slots. Wraps Material 3
+ * SteamHunter navigation bar item with icon and label content slots. Wraps Material 3
  * [NavigationBarItem].
  *
  * @param selected Whether this item is selected.
@@ -59,7 +59,7 @@ fun RowScope.SteamHunterNavigationBarItem(
 }
 
 /**
- * Now in Android navigation bar with content slot. Wraps Material 3 [NavigationBar].
+ * SteamHunter navigation bar with content slot. Wraps Material 3 [NavigationBar].
  *
  * @param modifier Modifier to be applied to the navigation bar.
  * @param content Destinations inside the navigation bar. This should contain multiple
