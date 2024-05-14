@@ -72,7 +72,7 @@ class SteamHunterAppState(
         }
 
     val shouldShowBottomBar: Boolean
-        get() = windowSizeClass.widthSizeClass == WindowWidthSizeClass.Compact
+        @Composable get() = currentTopLevelDestination != null
 
     val isOffline = networkMonitor.isOnline
         .map(Boolean::not)
