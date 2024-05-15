@@ -5,14 +5,15 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class PlayerAchievementsResponse(
-    @SerialName("playerstats") val playerStats: PlayerStats
+    @SerialName("playerstats") val playerStats: PlayerStatsResponse,
 )
 
 @Serializable
-data class PlayerStats(val achievements: List<Achievement>)
+data class PlayerStatsResponse(val achievements: List<AchievementResponse>)
 
 @Serializable
-data class Achievement(
+data class AchievementResponse(
     @SerialName("apiname") val apiName: String,
+    @SerialName("unlocktime") val unlockTime: Long,
     val achieved: Int
 )

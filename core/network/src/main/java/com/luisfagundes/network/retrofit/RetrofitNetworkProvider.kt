@@ -2,7 +2,9 @@ package com.luisfagundes.network.retrofit
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.luisfagundes.datasource.NetworkDataSource
-import com.luisfagundes.model.PlayerStatsResponse
+import com.luisfagundes.model.GameSchemaBodyResponse
+import com.luisfagundes.model.OwnedGamesBodyResponse
+import com.luisfagundes.model.PlayerAchievementsResponse
 import com.luisfagundes.network.BuildConfig
 import kotlinx.serialization.json.Json
 import okhttp3.Call
@@ -28,16 +30,18 @@ internal class RetrofitNetworkProvider @Inject constructor(
         .build()
         .create(RetrofitSteamApi::class.java)
 
+    override suspend fun getOwnedGames(steamId: String): OwnedGamesBodyResponse =
+        api.getOwnedGames(steamId).data
+
     override suspend fun getPlayerAchievements(
-        steamId: Int,
+        steamId: String,
         appId: Int,
-        language: Int?
-    ): PlayerStatsResponse =
+    ): PlayerAchievementsResponse =
         api.getPlayerAchievements(
             steamId = steamId,
             appId = appId,
-            language = language
         ).data
 
-
+    override suspend fun getSchemaForGame(appId: Int): GameSchemaBodyResponse =
+        api.getSchemaForGame(appId).data
 }

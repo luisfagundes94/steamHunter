@@ -1,11 +1,14 @@
 package com.luisfagundes.datasource
 
-import com.luisfagundes.model.PlayerStatsResponse
+import com.luisfagundes.model.GameSchemaBodyResponse
+import com.luisfagundes.model.OwnedGamesBodyResponse
+import com.luisfagundes.model.PlayerAchievementsResponse
 
 interface NetworkDataSource {
+    suspend fun getOwnedGames(steamId: String): OwnedGamesBodyResponse
     suspend fun getPlayerAchievements(
-        steamId: Int,
+        steamId: String,
         appId: Int,
-        language: Int? = null
-    ): PlayerStatsResponse
+    ): PlayerAchievementsResponse
+    suspend fun getSchemaForGame(appId: Int): GameSchemaBodyResponse
 }

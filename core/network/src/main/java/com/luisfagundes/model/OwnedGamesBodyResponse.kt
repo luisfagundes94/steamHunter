@@ -4,13 +4,13 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class OwnedGamesResponse(val response: OwnedGames)
+data class OwnedGamesBodyResponse(val response: OwnedGamesResponse)
 
 @Serializable
-data class OwnedGames(val games: List<Game>)
+data class OwnedGamesResponse(val games: List<GameResponse>)
 
 @Serializable
-data class Game(
+data class GameResponse(
     @SerialName("appid") val appId: Int,
     val name: String
 )
