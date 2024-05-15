@@ -2,7 +2,7 @@ package com.luisfagundes.network.retrofit
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.luisfagundes.datasource.NetworkDataSource
-import com.luisfagundes.model.NetworkPlayerStats
+import com.luisfagundes.model.PlayerStatsResponse
 import com.luisfagundes.network.BuildConfig
 import kotlinx.serialization.json.Json
 import okhttp3.Call
@@ -32,7 +32,7 @@ internal class RetrofitNetworkProvider @Inject constructor(
         steamId: Int,
         appId: Int,
         language: Int?
-    ): NetworkPlayerStats =
+    ): PlayerStatsResponse =
         api.getPlayerAchievements(
             steamId = steamId,
             appId = appId,

@@ -1,10 +1,9 @@
 package com.luisfagundes.data.mapper
 
-import com.luisfagundes.data.mapper.PlayerStatsMapper.mapToDomain
 import com.luisfagundes.domain.model.Achievement
 import com.luisfagundes.domain.model.PlayerStats
-import com.luisfagundes.model.NetworkAchievement
-import com.luisfagundes.model.NetworkPlayerStats
+import com.luisfagundes.model.AchievementResponse
+import com.luisfagundes.model.PlayerStatsResponse
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -12,12 +11,12 @@ import java.util.Locale
 private const val UNLOCKED = 1
 
 internal object PlayerStatsMapper {
-    fun NetworkPlayerStats.mapToDomain() = PlayerStats(
+    fun PlayerStatsResponse.mapToDomain() = PlayerStats(
         gameName = this.gameName,
         achievements = this.achievements.map { achievement -> achievement.mapToDomain() }
     )
 
-    private fun NetworkAchievement.mapToDomain() = Achievement(
+    private fun AchievementResponse.mapToDomain() = Achievement(
         name = this.name ?: "",
         achieved = this.achieved == UNLOCKED,
         unlockDate = this.unlocktime.convertTimeStampToDateString()

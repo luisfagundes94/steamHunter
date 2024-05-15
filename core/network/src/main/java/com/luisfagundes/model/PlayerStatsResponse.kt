@@ -3,9 +3,9 @@ package com.luisfagundes.model
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class NetworkPlayerStats(
+data class PlayerStatsResponse(
     val steamId: String,
     val gameName: String,
     val success: Boolean,
-    val achievements: List<NetworkAchievement>
+    val achievements: List<AchievementResponse>
 )
