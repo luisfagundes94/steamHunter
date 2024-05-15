@@ -1,7 +1,6 @@
 package com.luisfagundes.steamhunter.ui
 
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
-import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
@@ -14,7 +13,6 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import com.luisfagundes.about.navigation.navigateToAbout
 import com.luisfagundes.data.utils.NetworkMonitor
-import com.luisfagundes.data.utils.TimeZoneMonitor
 import com.luisfagundes.games.navigation.GAMES_ROUTE
 import com.luisfagundes.games.navigation.navigateToGames
 import com.luisfagundes.profile.navigation.navigateToProfile
@@ -24,13 +22,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.datetime.TimeZone
 
 @Composable
 fun rememberSteamHunterAppState(
     windowSizeClass: WindowSizeClass,
     networkMonitor: NetworkMonitor,
-    timeZoneMonitor: TimeZoneMonitor,
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
     navController: NavHostController = rememberNavController(),
 ): SteamHunterAppState {
@@ -39,14 +35,12 @@ fun rememberSteamHunterAppState(
         coroutineScope,
         windowSizeClass,
         networkMonitor,
-        timeZoneMonitor,
     ) {
         SteamHunterAppState(
             navController = navController,
             coroutineScope = coroutineScope,
             windowSizeClass = windowSizeClass,
             networkMonitor = networkMonitor,
-            timeZoneMonitor = timeZoneMonitor,
         )
     }
 }
@@ -57,7 +51,6 @@ class SteamHunterAppState(
     coroutineScope: CoroutineScope,
     val windowSizeClass: WindowSizeClass,
     networkMonitor: NetworkMonitor,
-    timeZoneMonitor: TimeZoneMonitor,
 ) {
     val currentDestination: NavDestination?
         @Composable get() = navController
@@ -83,13 +76,6 @@ class SteamHunterAppState(
         )
 
     val topLevelDestinations: List<TopLevelDestination> = TopLevelDestination.entries
-
-    val currentTimeZone = timeZoneMonitor.currentTimeZone
-        .stateIn(
-            coroutineScope,
-            SharingStarted.WhileSubscribed(5_000),
-            TimeZone.currentSystemDefault(),
-        )
 
     fun navigateToTopLevelDestination(topLevelDestination: TopLevelDestination) {
         val topLevelNavOptions = navOptions {

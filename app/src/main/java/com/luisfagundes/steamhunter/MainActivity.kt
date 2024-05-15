@@ -21,7 +21,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.luisfagundes.data.utils.NetworkMonitor
-import com.luisfagundes.data.utils.TimeZoneMonitor
 import com.luisfagundes.designsystem.theme.SteamHunterTheme
 import com.luisfagundes.domain.model.DarkThemeConfig
 import com.luisfagundes.steamhunter.presentation.MainActivityUiState
@@ -43,9 +42,6 @@ class MainActivity : ComponentActivity() {
 
     @Inject
     lateinit var networkMonitor: NetworkMonitor
-
-    @Inject
-    lateinit var timeZoneMonitor: TimeZoneMonitor
 
     private val viewModel: MainActivityViewModel by viewModels()
 
@@ -92,21 +88,14 @@ class MainActivity : ComponentActivity() {
             val appState = rememberSteamHunterAppState(
                 windowSizeClass = calculateWindowSizeClass(this),
                 networkMonitor = networkMonitor,
-                timeZoneMonitor = timeZoneMonitor,
             )
 
-            val currentTimeZone by appState.currentTimeZone.collectAsStateWithLifecycle()
-
-            CompositionLocalProvider(
-                LocalTimeZone provides currentTimeZone,
+            SteamHunterTheme(
+                darkTheme = darkTheme,
+                androidTheme = false,
+                dynamicColor = false
             ) {
-                SteamHunterTheme(
-                    darkTheme = darkTheme,
-                    androidTheme = false,
-                    dynamicColor = false
-                ) {
-                    SteamHunterApp(appState)
-                }
+                SteamHunterApp(appState)
             }
         }
     }
