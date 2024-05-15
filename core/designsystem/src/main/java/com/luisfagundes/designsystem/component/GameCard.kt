@@ -25,7 +25,7 @@ fun GameCard(
 ) {
     val completionPercentage = calculatePercentage(
         total = achievementsTotal,
-        unlocked = achievementsTotal
+        unlocked = achievementsUnlocked
     )
     Card(
         shape = RoundedCornerShape(12.dp),
