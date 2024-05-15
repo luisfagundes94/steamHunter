@@ -10,5 +10,8 @@ object OwnedGamesMapper {
     private fun GameResponse.mapToDomain() = OwnedGame(
         appId = this.appId,
         name = this.name,
+        achievementsUnlocked = 0,
+        achievementsTotal = 0,
+        imageUrl = ""
     )
 }

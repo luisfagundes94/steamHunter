@@ -23,7 +23,9 @@ fun SteamHunterNavHost(
         startDestination = startDestination,
         modifier = modifier,
     ) {
-        gamesScreen()
+        gamesScreen(
+            onGameClick = { }
+        )
         profileScreen()
         aboutScreen()
         searchScreen()
