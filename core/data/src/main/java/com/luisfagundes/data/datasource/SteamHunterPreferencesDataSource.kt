@@ -1,6 +1,8 @@
 package com.luisfagundes.data.datasource
 
+import android.util.Log
 import androidx.datastore.core.DataStore
+import androidx.datastore.core.IOException
 import com.luisfagundes.domain.model.DarkThemeConfig
 import com.luisfagundes.domain.model.UserData
 import com.luisfagundes.steamhunter.data.DarkThemeConfigProto
@@ -21,7 +23,8 @@ class SteamHunterPreferencesDataSource @Inject constructor(
                     DarkThemeConfigProto.DARK_THEME_CONFIG_FOLLOW_SYSTEM -> DarkThemeConfig.FOLLOW_SYSTEM
                     DarkThemeConfigProto.DARK_THEME_CONFIG_LIGHT -> DarkThemeConfig.LIGHT
                     DarkThemeConfigProto.DARK_THEME_CONFIG_DARK -> DarkThemeConfig.DARK
-                }
+                },
+                steamId = it.steamId
             )
         }
 
@@ -34,6 +37,15 @@ class SteamHunterPreferencesDataSource @Inject constructor(
                     DarkThemeConfig.DARK -> DarkThemeConfigProto.DARK_THEME_CONFIG_DARK
                 }
             }
+        }
+    }
+    suspend fun setUserSteamId(id: String) {
+        try {
+            userPreferences.updateData {
+                it.copy { this.steamId = id }
+            }
+        } catch (ioException: IOException) {
+            Log.e("SteamHunterPreferences", "Failed to update user preferences", ioException)
         }
     }
 }

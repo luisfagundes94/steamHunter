@@ -1,10 +1,10 @@
-package com.luisfagundes.games.presentation
+package com.luisfagundes.games.list.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.luisfagundes.Dispatcher
 import com.luisfagundes.SteamHunterDispatchers.IO
-import com.luisfagundes.domain.usecase.GetGameAchievements
+import com.luisfagundes.domain.usecase.GetRecentlyPlayedGames
 import com.luisfagundes.result.Result.Error
 import com.luisfagundes.result.Result.Success
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,17 +17,16 @@ import javax.inject.Inject
 
 @HiltViewModel
 class GamesViewModel @Inject constructor(
-    private val getGameAchievements: GetGameAchievements,
+    private val getRecentlyPlayedGames: GetRecentlyPlayedGames,
     @Dispatcher(IO) private val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<GamesUiState>(GamesUiState.Loading)
     val uiState: StateFlow<GamesUiState> = _uiState.asStateFlow()
 
-    fun getGames(steamId: String) = viewModelScope.launch(dispatcher) {
+    fun getGames() = viewModelScope.launch(dispatcher) {
         _uiState.value = GamesUiState.Loading
-        val result = getGameAchievements.invoke(steamId)
-        _uiState.value = when (result) {
+        _uiState.value = when (val result = getRecentlyPlayedGames()) {
             is Success -> GamesUiState.Success(result.data)
             is Error -> GamesUiState.Error
         }

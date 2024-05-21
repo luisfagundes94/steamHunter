@@ -14,8 +14,8 @@ import androidx.navigation.navOptions
 import com.luisfagundes.about.navigation.ABOUT_ROUTE
 import com.luisfagundes.about.navigation.navigateToAbout
 import com.luisfagundes.data.utils.NetworkMonitor
-import com.luisfagundes.games.navigation.GAMES_ROUTE
-import com.luisfagundes.games.navigation.navigateToGames
+import com.luisfagundes.games.list.navigation.GAMES_ROUTE
+import com.luisfagundes.games.list.navigation.navigateToGames
 import com.luisfagundes.profile.navigation.PROFILE_ROUTE
 import com.luisfagundes.profile.navigation.navigateToProfile
 import com.luisfagundes.search.navigation.navigateToSearch

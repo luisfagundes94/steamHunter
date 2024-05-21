@@ -1,11 +1,10 @@
-package com.luisfagundes.games.navigation
+package com.luisfagundes.games.list.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
-import com.luisfagundes.games.presentation.GamesRoute
-import com.luisfagundes.games.presentation.GamesScreen
+import com.luisfagundes.games.list.presentation.GamesRoute
 
 const val GAMES_ROUTE = "games_route/"
 
@@ -17,6 +16,8 @@ fun NavGraphBuilder.gamesScreen(
     composable(
         route = GAMES_ROUTE,
     ) {
-        GamesRoute(onGameClick = {})
+        GamesRoute(
+            onGameClick = onGameClick
+        )
     }
 }

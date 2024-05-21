@@ -1,4 +1,4 @@
-package com.luisfagundes.games.presentation
+package com.luisfagundes.games.list.presentation
 
 import com.luisfagundes.domain.model.Game
 

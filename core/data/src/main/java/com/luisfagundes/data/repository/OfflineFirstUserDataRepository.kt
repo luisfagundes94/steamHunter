@@ -16,4 +16,8 @@ internal class OfflineFirstUserDataRepository @Inject constructor(
     override suspend fun setDarkThemeConfig(darkThemeConfig: DarkThemeConfig) {
         steamHunterPreferencesDataSource.setDarkThemeConfig(darkThemeConfig)
     }
+
+    override suspend fun setUserSteamId(steamId: String) {
+        steamHunterPreferencesDataSource.setUserSteamId(steamId)
+    }
 }

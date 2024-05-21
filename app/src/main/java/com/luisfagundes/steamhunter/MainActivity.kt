@@ -51,6 +51,8 @@ class MainActivity : ComponentActivity() {
 
         var uiState: MainActivityUiState by mutableStateOf(Loading)
 
+        viewModel.setSteamId("76561198118228764")
+
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState

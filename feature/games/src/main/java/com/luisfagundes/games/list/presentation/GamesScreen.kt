@@ -1,4 +1,4 @@
-package com.luisfagundes.games.presentation
+package com.luisfagundes.games.list.presentation
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -30,11 +30,11 @@ fun GamesRoute(
         modifier = Modifier.fillMaxSize(),
         uiState = uiState,
         onGameClick = onGameClick,
-        onUpdateGames =  { viewModel.getGames("76561198118228764") }
+        onUpdateGames =  { viewModel.getGames() }
     )
 
     LaunchedEffect(Unit) {
-        viewModel.getGames("76561198118228764")
+        viewModel.getGames()
     }
 }
 
