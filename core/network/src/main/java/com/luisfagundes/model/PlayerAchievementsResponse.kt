@@ -9,7 +9,11 @@ data class PlayerAchievementsResponse(
 )
 
 @Serializable
-data class PlayerStatsResponse(val achievements: List<AchievementResponse>)
+data class PlayerStatsResponse(
+    val error: String? = null,
+    val success: Boolean,
+    val achievements: List<AchievementResponse>? = null
+)
 
 @Serializable
 data class AchievementResponse(

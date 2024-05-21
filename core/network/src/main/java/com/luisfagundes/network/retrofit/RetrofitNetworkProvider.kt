@@ -3,7 +3,7 @@ package com.luisfagundes.network.retrofit
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.luisfagundes.datasource.NetworkDataSource
 import com.luisfagundes.model.GameSchemaBodyResponse
-import com.luisfagundes.model.OwnedGamesBodyResponse
+import com.luisfagundes.model.RecentlyPlayedGamesBodyResponse
 import com.luisfagundes.model.PlayerAchievementsResponse
 import com.luisfagundes.network.BuildConfig
 import kotlinx.serialization.json.Json
@@ -16,10 +16,10 @@ import javax.inject.Singleton
 private const val BASE_URL = BuildConfig.BACKEND_URL
 
 @Singleton
-internal class RetrofitNetworkProvider @Inject constructor(
+class RetrofitNetworkProvider @Inject constructor(
     json: Json,
     okHttpCallFactory: dagger.Lazy<Call.Factory>,
-): NetworkDataSource {
+) : NetworkDataSource {
 
     private val api = Retrofit.Builder()
         .baseUrl(BASE_URL)
@@ -30,18 +30,17 @@ internal class RetrofitNetworkProvider @Inject constructor(
         .build()
         .create(RetrofitSteamApi::class.java)
 
-    override suspend fun getOwnedGames(steamId: String): OwnedGamesBodyResponse =
-        api.getOwnedGames(steamId).data
+    override suspend fun getRecentlyPlayedGames(steamId: String): RecentlyPlayedGamesBodyResponse =
+        api.getRecentlyPlayedGames(steamId)
 
     override suspend fun getPlayerAchievements(
         steamId: String,
         appId: Int,
-    ): PlayerAchievementsResponse =
-        api.getPlayerAchievements(
-            steamId = steamId,
-            appId = appId,
-        ).data
+    ): PlayerAchievementsResponse = api.getPlayerAchievements(
+        steamId = steamId,
+        appId = appId,
+    )
 
     override suspend fun getSchemaForGame(appId: Int): GameSchemaBodyResponse =
-        api.getSchemaForGame(appId).data
+        api.getSchemaForGame(appId)
 }

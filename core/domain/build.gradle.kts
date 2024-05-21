@@ -7,6 +7,7 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.common)
     implementation(libs.kotlinx.coroutines)
     implementation(libs.javax.inject)
 }

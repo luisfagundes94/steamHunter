@@ -4,6 +4,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
+import com.luisfagundes.games.presentation.GamesRoute
 import com.luisfagundes.games.presentation.GamesScreen
 
 const val GAMES_ROUTE = "games_route/"
@@ -16,8 +17,6 @@ fun NavGraphBuilder.gamesScreen(
     composable(
         route = GAMES_ROUTE,
     ) {
-        GamesScreen(
-            onGameClick = onGameClick
-        )
+        GamesRoute(onGameClick = {})
     }
 }

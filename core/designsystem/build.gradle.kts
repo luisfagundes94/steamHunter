@@ -15,6 +15,4 @@ dependencies {
     api(libs.androidx.compose.runtime)
     api(libs.androidx.compose.ui.util)
     api(libs.coil.kt.compose)
-
-    implementation(libs.coil.kt.compose)
 }

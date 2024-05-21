@@ -18,7 +18,7 @@ import com.luisfagundes.designsystem.utils.calculatePercentage
 
 @Composable
 fun GameCard(
-    gameName: String,
+    name: String,
     achievementsUnlocked: Int,
     achievementsTotal: Int,
     imageUrl: String
@@ -35,6 +35,7 @@ fun GameCard(
             .padding(vertical = 4.dp)
     ) {
         Row(
+            verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .background(MaterialTheme.colorScheme.surface)
                 .padding(16.dp)
@@ -54,7 +55,7 @@ fun GameCard(
                     .align(Alignment.CenterVertically)
             ) {
                 Text(
-                    text = gameName,
+                    text = name,
                     style = MaterialTheme.typography.bodyLarge,
                     fontWeight = FontWeight.Bold
                 )
@@ -93,7 +94,7 @@ fun GameCard(
 fun GameCardPreview() {
     SteamHunterTheme {
         GameCard(
-            gameName = "Fallout: New Vegas",
+            name = "Fallout: New Vegas",
             achievementsUnlocked = 70,
             achievementsTotal = 75,
             imageUrl = ""

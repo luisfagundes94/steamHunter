@@ -1,19 +1,29 @@
 package com.luisfagundes.games.presentation
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.luisfagundes.designsystem.component.GameCard
-import com.luisfagundes.domain.model.OwnedGame
 
 @Composable
 fun GamesRoute(
-    onGameClick: (String) -> Unit
+    onGameClick: (String) -> Unit,
+    viewModel: GamesViewModel = hiltViewModel()
 ) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
     GamesScreen(
         modifier = Modifier.fillMaxWidth(),
+        uiState = uiState,
         onGameClick = onGameClick
     )
 }
@@ -21,41 +31,31 @@ fun GamesRoute(
 @Composable
 internal fun GamesScreen(
     modifier: Modifier = Modifier,
+    uiState: GamesUiState,
     onGameClick: (String) -> Unit
 ) {
-    val games = listOf(
-        OwnedGame(
-            appId = 1,
-            name = "Fallout: New Vegas",
-            achievementsUnlocked = 70,
-            achievementsTotal = 75,
-            imageUrl = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.wallpapersafari.com%2F86%2F8%2FnbTiks.jpg&f=1&nofb=1&ipt=df1be341d086f45885a654e2a9d8364ce711d75288da618ab0b70c5fded974a6&ipo=images"
-        ),
-        OwnedGame(
-            appId = 1,
-            name = "Fallout: New Vegas",
-            achievementsUnlocked = 70,
-            achievementsTotal = 75,
-            imageUrl = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.wallpapersafari.com%2F86%2F8%2FnbTiks.jpg&f=1&nofb=1&ipt=df1be341d086f45885a654e2a9d8364ce711d75288da618ab0b70c5fded974a6&ipo=images"
-        ),
-        OwnedGame(
-            appId = 1,
-            name = "Fallout: New Vegas",
-            achievementsUnlocked = 70,
-            achievementsTotal = 75,
-            imageUrl = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.wallpapersafari.com%2F86%2F8%2FnbTiks.jpg&f=1&nofb=1&ipt=df1be341d086f45885a654e2a9d8364ce711d75288da618ab0b70c5fded974a6&ipo=images"
-        ),
-
-    )
-    LazyColumn(
-        modifier = modifier
+    Column(
+        modifier = modifier,
     ) {
-        items(games) { game ->
-            GameCard(
-                gameName = game.name,
-                achievementsUnlocked = game.achievementsUnlocked,
-                achievementsTotal = game.achievementsTotal,
-                imageUrl = game.imageUrl
+        when (uiState) {
+            is GamesUiState.Success -> LazyColumn(
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                items(uiState.games) { game ->
+                    GameCard(
+                        name = game.name,
+                        achievementsUnlocked = game.achievementsUnlocked,
+                        achievementsTotal = game.achievementsTotal,
+                        imageUrl = game.imageUrl
+                    )
+                }
+            }
+            is GamesUiState.Error -> Text(
+                modifier = Modifier.align(Alignment.CenterHorizontally),
+                text = "Deu pau"
+            )
+            is GamesUiState.Loading -> CircularProgressIndicator(
+                modifier = Modifier.align(Alignment.CenterHorizontally)
             )
         }
     }

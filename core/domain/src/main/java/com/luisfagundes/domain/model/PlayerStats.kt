@@ -1,6 +1,7 @@
 package com.luisfagundes.domain.model
 
 data class PlayerStats(
-    val gameName: String,
-    val achievements: List<Achievement>
+    val success: Boolean? = false,
+    val error: String? = null,
+    val achievements: List<Achievement> = emptyList()
 )

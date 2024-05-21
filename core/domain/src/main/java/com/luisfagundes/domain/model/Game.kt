@@ -1,6 +1,6 @@
 package com.luisfagundes.domain.model
 
-data class OwnedGame(
+data class Game(
     val appId: Int,
     val name: String,
     var achievementsUnlocked: Int,

@@ -1,6 +1,8 @@
 package com.luisfagundes.data.mapper
 
 import com.luisfagundes.domain.model.Achievement
+import com.luisfagundes.domain.model.PlayerAchievements
+import com.luisfagundes.domain.model.PlayerStats
 import com.luisfagundes.model.AchievementResponse
 import com.luisfagundes.model.PlayerAchievementsResponse
 import com.luisfagundes.model.PlayerStatsResponse
@@ -12,7 +14,15 @@ private const val UNLOCKED = 1
 private const val DEFAULT_TIME_FORMAT = "dd/MM/yyyy"
 
 internal object PlayerAchievementsMapper {
-    fun PlayerStatsResponse.mapToDomain() = this.achievements.map { it.mapToDomain() }
+
+    fun PlayerAchievementsResponse.mapToDomain() = PlayerAchievements(
+        playerStats = this.playerStats.mapToDomain()
+    )
+    private fun PlayerStatsResponse?.mapToDomain() = PlayerStats(
+        success = this?.success,
+        error = this?.error,
+        achievements = this?.achievements?.map { it.mapToDomain() } ?: emptyList()
+    )
 
     private fun AchievementResponse.mapToDomain() = Achievement(
         achieved = this.achieved == UNLOCKED,

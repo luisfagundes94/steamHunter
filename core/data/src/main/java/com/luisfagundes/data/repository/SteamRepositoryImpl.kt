@@ -1,33 +1,35 @@
 package com.luisfagundes.data.repository
 
 import com.luisfagundes.data.mapper.GameSchemaMapper.mapToDomain
-import com.luisfagundes.data.mapper.OwnedGamesMapper.mapToDomain
+import com.luisfagundes.data.mapper.GameMapper.mapToDomain
 import com.luisfagundes.data.mapper.PlayerAchievementsMapper.mapToDomain
 import com.luisfagundes.datasource.NetworkDataSource
-import com.luisfagundes.domain.model.GameSchema
+import com.luisfagundes.result.Result
 import com.luisfagundes.domain.repository.SteamRepository
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
+import com.luisfagundes.result.safeApiCall
 import javax.inject.Inject
 
 internal class SteamRepositoryImpl @Inject constructor(
     private val network: NetworkDataSource
-): SteamRepository {
-    override suspend fun getOwnedGames(steamId: String) = flowOf(
-        network.getOwnedGames(steamId).mapToDomain()
-    )
+) : SteamRepository {
+    override suspend fun getRecentlyPlayedGames(steamId: String) = safeApiCall {
+        network.getRecentlyPlayedGames(steamId).mapToDomain()
+    }
 
     override suspend fun getPlayerAchievements(
         steamId: String,
         appId: Int
-    ) = flowOf(
-        network.getPlayerAchievements(
+    ) = try {
+        val data = network.getPlayerAchievements(
             steamId = steamId,
             appId = appId,
-        ).playerStats.mapToDomain()
-    )
+        ).mapToDomain()
+        Result.Success(data)
+    } catch (e: Exception) {
+        Result.Success(null)
+    }
 
-    override suspend fun getSchemaForGame(appId: Int): Flow<GameSchema> = flowOf(
+    override suspend fun getSchemaForGame(appId: Int) = safeApiCall {
         network.getSchemaForGame(appId).mapToDomain()
-    )
+    }
 }
