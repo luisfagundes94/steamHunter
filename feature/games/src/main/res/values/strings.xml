@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="feature_games_title">Games</string>
+    <string name="feature_games_default_error_msg">An Error Has Occurred, Please Try Again</string>
 </resources>

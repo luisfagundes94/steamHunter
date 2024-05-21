@@ -2,4 +2,5 @@
 <resources>
     <string name="core_designsystem_logo">%1$s logo</string>
     <string name="core_designsystem_go_back_icon">Go back icon</string>
+    <string name="core_designsystem_try_again">Try Again</string>
 </resources>

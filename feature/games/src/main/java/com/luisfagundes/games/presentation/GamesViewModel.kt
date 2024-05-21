@@ -24,11 +24,7 @@ class GamesViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<GamesUiState>(GamesUiState.Loading)
     val uiState: StateFlow<GamesUiState> = _uiState.asStateFlow()
 
-    init {
-        getGames("76561198118228764")
-    }
-
-    private fun getGames(steamId: String) = viewModelScope.launch(dispatcher) {
+    fun getGames(steamId: String) = viewModelScope.launch(dispatcher) {
         _uiState.value = GamesUiState.Loading
         val result = getGameAchievements.invoke(steamId)
         _uiState.value = when (result) {
