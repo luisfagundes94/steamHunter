@@ -102,7 +102,7 @@ internal fun SteamHunterApp(
                     destinations = appState.topLevelDestinations,
                     onNavigateToDestination = appState::navigateToTopLevelDestination,
                     currentDestination = appState.currentDestination,
-                    modifier = Modifier.testTag("NiaBottomBar"),
+                    modifier = Modifier.testTag("SteamHunterBottomBar "),
                 )
             }
         },
@@ -120,24 +120,32 @@ internal fun SteamHunterApp(
         ) {
             Column(Modifier.fillMaxSize()) {
                 val destination = appState.currentTopLevelDestination
-                val shouldShowTopAppBar = destination != null
+
                 if (destination != null) {
-                    SteamHunterTopAppBar(
-                        titleRes = destination.titleTextId,
-                        navigationIcon = SteamHunterIcons.Search,
-                        navigationIconContentDescription = stringResource(
-                            id = R.string.feature_settings_top_app_bar_navigation_icon_description,
-                        ),
-                        actionIcon = SteamHunterIcons.Settings,
-                        actionIconContentDescription = stringResource(
-                            id = R.string.feature_settings_top_app_bar_action_icon_description,
-                        ),
-                        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                            containerColor = Color.Transparent,
-                        ),
-                        onActionClick = { onTopAppBarActionClick() },
-                        onNavigationClick = { appState.navigateToSearch() },
-                    )
+                    when (destination) {
+                        TopLevelDestination.GAMES ->  SteamHunterTopAppBar(
+                            titleRes = destination.titleTextId,
+                            navigationIcon = SteamHunterIcons.Search,
+                            navigationIconContentDescription = stringResource(
+                                id = R.string.feature_settings_top_app_bar_navigation_icon_description,
+                            ),
+                            actionIcon = SteamHunterIcons.Settings,
+                            actionIconContentDescription = stringResource(
+                                id = R.string.feature_settings_top_app_bar_action_icon_description,
+                            ),
+                            colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                                containerColor = Color.Transparent,
+                            ),
+                            onActionClick = { onTopAppBarActionClick() },
+                            onNavigationClick = { appState.navigateToSearch() },
+                        )
+                        else -> SteamHunterTopAppBar(
+                            titleRes = destination.titleTextId,
+                            colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                                containerColor = Color.Transparent,
+                            ),
+                        )
+                    }
                 }
 
                 SteamHunterNavHost(
@@ -149,7 +157,7 @@ internal fun SteamHunterApp(
                             duration = Short,
                         ) == ActionPerformed
                     },
-                    modifier = if (shouldShowTopAppBar) {
+                    modifier = if (destination != null) {
                         Modifier.consumeWindowInsets(
                             WindowInsets.safeDrawing.only(WindowInsetsSides.Top),
                         )
