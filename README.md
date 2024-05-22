@@ -23,6 +23,9 @@ This app uses [_**MVVM (Model-View-ViewModel)**_]([https://proandroiddev.com/mvi
  
 <img src="https://github.com/MuhammadKhoshnaw/BasicMVIApp/blob/master/.github/res/ComponentDiagram.svg" width=500 />
 
+# Run
+To run the project, you need to create a file named api.properties at root with the field API_KEY=insertkeyhere. You can get your STEAM API Key [here]([https://steamcommunity.com/dev]) 
+
 # Build
 The `build-logic` folder defines project-specific plugins, used to keep a single
 source of truth for common module configurations.
