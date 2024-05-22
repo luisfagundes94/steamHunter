@@ -129,10 +129,8 @@ internal fun SteamHunterApp(
                             navigationIconContentDescription = stringResource(
                                 id = R.string.feature_settings_top_app_bar_navigation_icon_description,
                             ),
-                            actionIcon = SteamHunterIcons.Settings,
-                            actionIconContentDescription = stringResource(
-                                id = R.string.feature_settings_top_app_bar_action_icon_description,
-                            ),
+                            actionIcon = SteamHunterIcons.Sort,
+                            actionIconContentDescription = stringResource(R.string.sort_list),
                             colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                                 containerColor = Color.Transparent,
                             ),
