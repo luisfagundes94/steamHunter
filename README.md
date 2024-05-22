@@ -6,13 +6,14 @@ Features:
 - Track game achievements
 - Easily search for how to complete an achievement
 
-## Architecture
-Architecture that is meticulously planned is paramount for an application's scalability, and all architectural designs share a universal aim - to handle the complexity of your application. This might not be a concern for smaller-scale apps, but it can be incredibly advantageous when working on apps with an extended development timeline and a bigger team.
 ## Screenshots
 <p float="left">
   <img src="https://github.com/luisfagundes94/steamHunter/blob/master/screenshot/games.jpg" width="200" /> 
   <img src="https://github.com/luisfagundes94/steamHunter/blob/master/screenshot/achievements.jpg" width="200" />
 </p>
+
+## Architecture
+Architecture that is meticulously planned is paramount for an application's scalability, and all architectural designs share a universal aim - to handle the complexity of your application. This might not be a concern for smaller-scale apps, but it can be incredibly advantageous when working on apps with an extended development timeline and a bigger team.
 
 Robert C. Martin introduced the concept of Clean Architecture in 2012 via the Clean Code Blog, and it abides by the SOLID principle.
 
