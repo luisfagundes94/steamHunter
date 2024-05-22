@@ -10,7 +10,6 @@ import com.luisfagundes.result.Result.Success
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -22,7 +21,7 @@ class GamesViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<GamesUiState>(GamesUiState.Loading)
-    val uiState: StateFlow<GamesUiState> = _uiState.asStateFlow()
+    val uiState = _uiState.asStateFlow()
 
     fun getGames() = viewModelScope.launch(dispatcher) {
         _uiState.value = GamesUiState.Loading

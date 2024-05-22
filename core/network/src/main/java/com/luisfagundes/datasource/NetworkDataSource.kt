@@ -10,5 +10,8 @@ interface NetworkDataSource {
         steamId: String,
         appId: Int,
     ): PlayerAchievementsResponse
-    suspend fun getSchemaForGame(appId: Int): GameSchemaBodyResponse
+    suspend fun getSchemaForGame(
+        steamId: String,
+        appId: Int
+    ): GameSchemaBodyResponse
 }

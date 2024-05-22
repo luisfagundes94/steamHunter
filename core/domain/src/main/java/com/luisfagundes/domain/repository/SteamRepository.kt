@@ -11,5 +11,8 @@ interface SteamRepository {
         steamId: String,
         appId: Int,
     ): Result<PlayerAchievements?>
-    suspend fun getSchemaForGame(appId: Int): Result<GameSchema>
+    suspend fun getSchemaForGame(
+        steamId: String,
+        appId: Int
+    ): Result<GameSchema>
 }

@@ -29,7 +29,13 @@ internal class SteamRepositoryImpl @Inject constructor(
         Result.Success(null)
     }
 
-    override suspend fun getSchemaForGame(appId: Int) = safeApiCall {
-        network.getSchemaForGame(appId).mapToDomain()
+    override suspend fun getSchemaForGame(
+        steamId: String,
+        appId: Int
+    ) = safeApiCall {
+        network.getSchemaForGame(
+            steamId = steamId,
+            appId = appId,
+        ).mapToDomain()
     }
 }

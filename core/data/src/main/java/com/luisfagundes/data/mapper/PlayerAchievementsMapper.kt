@@ -25,6 +25,7 @@ internal object PlayerAchievementsMapper {
     )
 
     private fun AchievementResponse.mapToDomain() = Achievement(
+        apiName = this.apiName,
         achieved = this.achieved == UNLOCKED,
         unlockDate = this.unlockTime.convertTimeStampToDateString()
     )

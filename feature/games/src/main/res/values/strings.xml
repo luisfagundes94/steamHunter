@@ -2,4 +2,7 @@
 <resources>
     <string name="feature_games_title">Games</string>
     <string name="feature_games_default_error_msg">An Error Has Occurred, Please Try Again</string>
+    <string name="feature_games_empty_msg">No achievements found for this game</string>
+    <string name="feature_games_achievements">Achievements</string>
+    <string name="feature_games_achievement_image">Achievement Image</string>
 </resources>

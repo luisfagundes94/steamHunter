@@ -21,6 +21,7 @@ internal interface RetrofitSteamApi {
 
     @GET("ISteamUserStats/GetSchemaForGame/v2/")
     suspend fun getSchemaForGame(
+        @Query("steamid") steamId: String,
         @Query("appid") appId: Int
     ): GameSchemaBodyResponse
 }

@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import com.luisfagundes.about.navigation.aboutScreen
 import com.luisfagundes.games.achievements.navigation.achievementsScreen
+import com.luisfagundes.games.achievements.navigation.navigateToAchievements
 import com.luisfagundes.games.list.navigation.GAMES_ROUTE
 import com.luisfagundes.games.list.navigation.gamesScreen
 import com.luisfagundes.profile.navigation.profileScreen
@@ -26,7 +27,7 @@ fun SteamHunterNavHost(
     ) {
         // Top Level Destinations
         gamesScreen(
-            onGameClick = {}
+            onGameClick = { gameId -> navController.navigateToAchievements(gameId) }
         )
         profileScreen()
         aboutScreen()
@@ -34,7 +35,7 @@ fun SteamHunterNavHost(
         // Other
         searchScreen()
         achievementsScreen(
-            onGameClick = {}
+            onBackClick = { navController.popBackStack() }
         )
     }
 }

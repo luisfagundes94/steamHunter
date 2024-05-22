@@ -41,6 +41,11 @@ class RetrofitNetworkProvider @Inject constructor(
         appId = appId,
     )
 
-    override suspend fun getSchemaForGame(appId: Int): GameSchemaBodyResponse =
-        api.getSchemaForGame(appId)
+    override suspend fun getSchemaForGame(
+        steamId: String,
+        appId: Int
+    ): GameSchemaBodyResponse = api.getSchemaForGame(
+        steamId = steamId,
+        appId = appId,
+    )
 }

@@ -1,6 +1,5 @@
 package com.luisfagundes.data.mapper
 
-import com.luisfagundes.data.mapper.GameSchemaMapper.mapToDomain
 import com.luisfagundes.domain.model.AchievementSchema
 import com.luisfagundes.domain.model.AvailableGameStats
 import com.luisfagundes.domain.model.GameSchema
@@ -13,6 +12,7 @@ object GameSchemaMapper {
     fun GameSchemaBodyResponse.mapToDomain() = this.game.mapToDomain()
 
     private fun GameSchemaResponse.mapToDomain() = GameSchema(
+        gameName = this.gameName,
         availableGameStats = this.availableGameStats.mapToDomain()
     )
 
@@ -24,5 +24,7 @@ object GameSchemaMapper {
         name = this.name,
         displayName = this.displayName,
         description = this.description,
+        iconUrl = this.icon,
+        grayIconUrl = this.iconGray
     )
 }

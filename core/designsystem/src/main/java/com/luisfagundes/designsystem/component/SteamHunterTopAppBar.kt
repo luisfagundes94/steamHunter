@@ -1,6 +1,7 @@
 package com.luisfagundes.designsystem.component
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -13,6 +14,7 @@ import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
@@ -24,15 +26,49 @@ import com.luisfagundes.designsystem.theme.SteamHunterTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SteamHunterTopAppBar(
+    title: String,
+    colors: TopAppBarColors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+        containerColor = Color.Transparent
+    ),
+    navigationIcon: ImageVector = Icons.AutoMirrored.Default.ArrowBack,
+    navigationIconContentDescription: String? = null,
+    onNavigationClick: () -> Unit = {},
+    content: @Composable () -> Unit = {}
+) {
+    Column {
+        TopAppBar(
+            title = { Text(title) },
+            navigationIcon = {
+                IconButton(onClick = onNavigationClick) {
+                    Icon(
+                        imageVector = navigationIcon,
+                        contentDescription = navigationIconContentDescription,
+                        tint = MaterialTheme.colorScheme.onSurface,
+                    )
+                }
+            },
+            colors = colors
+        )
+        content.invoke()
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun SteamHunterTopAppBar(
     @StringRes titleRes: Int,
     modifier: Modifier = Modifier,
-    colors: TopAppBarColors = TopAppBarDefaults.centerAlignedTopAppBarColors()
+    colors: TopAppBarColors = TopAppBarDefaults.centerAlignedTopAppBarColors(),
+    content: @Composable () -> Unit = {},
 ) {
-    TopAppBar(
-        title = { Text(text = stringResource(id = titleRes)) },
-        colors = colors,
-        modifier = modifier.testTag("simpleSteamHunterTopAppBar"),
-    )
+    Column {
+        TopAppBar(
+            title = { Text(text = stringResource(id = titleRes)) },
+            colors = colors,
+            modifier = modifier.testTag("simpleSteamHunterTopAppBar"),
+        )
+        content.invoke()
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
