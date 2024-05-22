@@ -13,7 +13,7 @@ Features:
 </p>
 
 ## Architecture
-Architecture that is meticulously planned is paramount for an application's scalability, and all architectural designs share a universal aim - to handle the complexity of your application. This might not be a concern for smaller-scale apps, but it can be incredibly advantageous when working on apps with an extended development timeline and a bigger team.
+A well-planned architecture is crucial for an app's scalability and managing its complexity. While smaller apps might not need this, it's very helpful for larger projects with longer development times and bigger teams.
 
 Robert C. Martin introduced the concept of Clean Architecture in 2012 via the Clean Code Blog, and it abides by the SOLID principle.
 
