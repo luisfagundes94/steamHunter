@@ -2,6 +2,7 @@ package com.luisfagundes.games.list.presentation
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -49,14 +50,15 @@ internal fun GamesScreen(
     onGameClick: (String) -> Unit,
     onUpdateGames: () -> Unit = {}
 ) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
+    Box(
         modifier = modifier,
+        contentAlignment = Alignment.Center
     ) {
         when (uiState) {
             is GamesUiState.Success -> LazyColumn(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxSize()
+                    .align(Alignment.TopStart)
             ) {
                 items(uiState.games) { game ->
                     GameCard(
@@ -73,13 +75,10 @@ internal fun GamesScreen(
                 }
             }
             is GamesUiState.Error -> TryAgain(
-                modifier = Modifier,
                 title = stringResource(R.string.feature_games_default_error_msg),
                 onClick = onUpdateGames
             )
-            is GamesUiState.Loading -> CircularProgressIndicator(
-                modifier = Modifier.align(Alignment.CenterHorizontally)
-            )
+            is GamesUiState.Loading -> CircularProgressIndicator()
         }
     }
 }

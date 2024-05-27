@@ -2,8 +2,7 @@ package com.luisfagundes.games.achievements.presentation
 
 import android.content.Intent
 import android.net.Uri
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -54,8 +53,7 @@ fun AchievementsRoute(
             uiState = uiState,
             onTryAgainClick = { viewModel.getAchievements() },
             onAchievementClick = { achievement ->
-                val queryUrl = "$GOOGLE_SEARCH_URL${Uri.encode(achievement)}+$ACHIEVEMENT"
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(queryUrl))
+                val intent = buildSearchOnBrowserIntent(achievement)
                 context.startActivity(intent)
             }
         )
@@ -73,10 +71,9 @@ internal fun AchievementsScreen(
     onTryAgainClick: () -> Unit,
     onAchievementClick: (String) -> Unit = {},
 ) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-        modifier = modifier
+    Box(
+        modifier = modifier,
+        contentAlignment = Alignment.Center
     ) {
         when (uiState) {
             is AchievementsUiState.Success -> LazyColumn(
@@ -87,6 +84,7 @@ internal fun AchievementsScreen(
                     AchievementCard(
                         modifier = Modifier
                             .fillMaxWidth()
+                            .align(Alignment.TopStart)
                             .padding(horizontal = 16.dp)
                             .padding(vertical = 4.dp),
                         name = achievement.name,
@@ -115,4 +113,9 @@ internal fun AchievementsScreen(
             is AchievementsUiState.Loading -> CircularProgressIndicator()
         }
     }
+}
+
+private fun buildSearchOnBrowserIntent(achievement: String): Intent {
+    val queryUrl = "$GOOGLE_SEARCH_URL${Uri.encode(achievement)}+$ACHIEVEMENT"
+    return Intent(Intent.ACTION_VIEW, Uri.parse(queryUrl))
 }
