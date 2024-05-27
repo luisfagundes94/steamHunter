@@ -1,8 +1,19 @@
 # SteamHunter (WIP)
-## Description
 Steam Achievements Tracking App
+
+Features:
+- Sort games by recently played, name, completion percentage or difficulty
+- Track game achievements
+- Easily search for how to complete an achievement
+
+## Screenshots
+<p float="left">
+  <img src="https://github.com/luisfagundes94/steamHunter/blob/master/screenshot/games.jpg" width="200" /> 
+  <img src="https://github.com/luisfagundes94/steamHunter/blob/master/screenshot/achievements.jpg" width="200" />
+</p>
+
 ## Architecture
-Architecture that is meticulously planned is paramount for an application's scalability, and all architectural designs share a universal aim - to handle the complexity of your application. This might not be a concern for smaller-scale apps, but it can be incredibly advantageous when working on apps with an extended development timeline and a bigger team.
+A well-planned architecture is crucial for an app's scalability and managing its complexity. While smaller apps might not need this, it's very helpful for larger projects with longer development times and bigger teams.
 
 Robert C. Martin introduced the concept of Clean Architecture in 2012 via the Clean Code Blog, and it abides by the SOLID principle.
 
@@ -11,6 +22,11 @@ Robert C. Martin introduced the concept of Clean Architecture in 2012 via the Cl
 This app uses [_**MVVM (Model-View-ViewModel)**_]([https://proandroiddev.com/mvi-architecture-with-kotlin-flows-and-channels-d36820b2028d](https://developer.android.com/topic/architecture)) architecture design.
  
 <img src="https://github.com/MuhammadKhoshnaw/BasicMVIApp/blob/master/.github/res/ComponentDiagram.svg" width=500 />
+
+# Run
+To run the app, you need to create a file named api.properties at project root with the fields:
+- API_KEY="insertkeyhere". You can get your Steam API Key [here](https://steamcommunity.com/dev)
+- BACKEND_URL="https://api.steampowered.com/"
 
 # Build
 The `build-logic` folder defines project-specific plugins, used to keep a single
