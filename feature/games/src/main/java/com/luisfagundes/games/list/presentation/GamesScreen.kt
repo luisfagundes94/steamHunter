@@ -37,10 +37,6 @@ fun GamesRoute(
         onGameClick = onGameClick,
         onUpdateGames =  { viewModel.getGames() }
     )
-
-    LaunchedEffect(Unit) {
-        viewModel.getGames()
-    }
 }
 
 @Composable

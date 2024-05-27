@@ -23,6 +23,10 @@ class GamesViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<GamesUiState>(GamesUiState.Loading)
     val uiState = _uiState.asStateFlow()
 
+    init {
+        getGames()
+    }
+
     fun getGames() = viewModelScope.launch(dispatcher) {
         _uiState.value = GamesUiState.Loading
         _uiState.value = when (val result = getRecentlyPlayedGames()) {
