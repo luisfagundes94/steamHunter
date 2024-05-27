@@ -1,4 +1,5 @@
-import com.luisfagundes.configureKotlinJvm
+
+import com.luisfagundes.convention.configureKotlinJvm
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
