@@ -3,6 +3,9 @@ buildscript {
         google()
         mavenCentral()
     }
+    dependencies {
+        classpath(libs.android.gradlePlugin)
+    }
 }
 
 plugins {
