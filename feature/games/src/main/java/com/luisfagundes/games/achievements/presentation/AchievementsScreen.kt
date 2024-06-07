@@ -3,10 +3,8 @@ package com.luisfagundes.games.achievements.presentation
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -16,9 +14,13 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
+import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -54,7 +56,7 @@ fun AchievementsRoute(
         AchievementsScreen(
             modifier = Modifier.fillMaxSize(),
             uiState = uiState,
-            onTryAgainClick = { viewModel.getAchievements() },
+            onUpdateAchievements = { viewModel.getAchievements() },
             onAchievementClick = { achievement ->
                 val intent = buildSearchOnBrowserIntent(achievement)
                 context.startActivity(intent)
@@ -67,37 +69,43 @@ fun AchievementsRoute(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun AchievementsScreen(
     modifier: Modifier = Modifier,
     uiState: AchievementsUiState,
-    onTryAgainClick: () -> Unit,
+    onUpdateAchievements: () -> Unit,
     onAchievementClick: (String) -> Unit = {},
 ) {
-    Box(
-        modifier = modifier,
-        contentAlignment = Alignment.Center
+    PullToRefreshBox(
+        isRefreshing = uiState is AchievementsUiState.Loading,
+        onRefresh = onUpdateAchievements
     ) {
-        when (uiState) {
-            is AchievementsUiState.Success -> AchievementsList(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
-                achievements = uiState.achievements,
-                onAchievementClick = onAchievementClick
-            )
+        Box(
+            modifier = modifier,
+            contentAlignment = Alignment.Center
+        ) {
+            when (uiState) {
+                is AchievementsUiState.Success -> AchievementsList(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    achievements = uiState.achievements,
+                    onAchievementClick = onAchievementClick
+                )
 
-            is AchievementsUiState.Error -> TryAgain(
-                modifier = Modifier,
-                title = stringResource(R.string.feature_games_default_error_msg),
-                onClick = onTryAgainClick
-            )
+                is AchievementsUiState.Error -> TryAgain(
+                    modifier = Modifier,
+                    title = stringResource(R.string.feature_games_default_error_msg),
+                    onClick = onUpdateAchievements
+                )
 
-            is AchievementsUiState.Empty -> Text(
-                text = stringResource(R.string.feature_games_empty_msg),
-            )
+                is AchievementsUiState.Empty -> Text(
+                    text = stringResource(R.string.feature_games_empty_msg),
+                )
 
-            is AchievementsUiState.Loading -> CircularProgressIndicator()
+                is AchievementsUiState.Loading -> CircularProgressIndicator()
+            }
         }
     }
 }

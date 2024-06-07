@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -35,6 +37,7 @@ fun GamesRoute(
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun GamesScreen(
     modifier: Modifier = Modifier,
@@ -42,35 +45,40 @@ internal fun GamesScreen(
     onGameClick: (String) -> Unit,
     onUpdateGames: () -> Unit = {}
 ) {
-    Box(
-        modifier = modifier,
-        contentAlignment = Alignment.Center
+    PullToRefreshBox(
+        isRefreshing = uiState is GamesUiState.Loading,
+        onRefresh = onUpdateGames
     ) {
-        when (uiState) {
-            is GamesUiState.Success -> LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .align(Alignment.TopStart)
-            ) {
-                items(uiState.games) { game ->
-                    GameCard(
-                        modifier = Modifier
-                            .clickable { onGameClick(game.appId.toString()) }
-                            .fillMaxWidth()
-                            .padding(horizontal = 16.dp)
-                            .padding(vertical = 4.dp),
-                        name = game.name,
-                        achievementsUnlocked = game.achievementsUnlocked,
-                        achievementsTotal = game.achievementsTotal,
-                        imageUrl = game.imageUrl
-                    )
+        Box(
+            modifier = modifier,
+            contentAlignment = Alignment.Center
+        ) {
+            when (uiState) {
+                is GamesUiState.Success -> LazyColumn(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .align(Alignment.TopStart)
+                ) {
+                    items(uiState.games) { game ->
+                        GameCard(
+                            modifier = Modifier
+                                .clickable { onGameClick(game.appId.toString()) }
+                                .fillMaxWidth()
+                                .padding(horizontal = 16.dp)
+                                .padding(vertical = 4.dp),
+                            name = game.name,
+                            achievementsUnlocked = game.achievementsUnlocked,
+                            achievementsTotal = game.achievementsTotal,
+                            imageUrl = game.imageUrl
+                        )
+                    }
                 }
+                is GamesUiState.Error -> TryAgain(
+                    title = stringResource(R.string.feature_games_default_error_msg),
+                    onClick = onUpdateGames
+                )
+                is GamesUiState.Loading -> CircularProgressIndicator()
             }
-            is GamesUiState.Error -> TryAgain(
-                title = stringResource(R.string.feature_games_default_error_msg),
-                onClick = onUpdateGames
-            )
-            is GamesUiState.Loading -> CircularProgressIndicator()
         }
     }
 }
