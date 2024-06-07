@@ -7,14 +7,6 @@ plugins {
     alias(libs.plugins.ksp)
 }
 
-kotlin {
-    sourceSets.all {
-        languageSettings {
-            enableLanguageFeature("ExplicitBackingFields")
-        }
-    }
-}
-
 android {
     compileSdk = 34
 

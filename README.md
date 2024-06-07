@@ -25,7 +25,7 @@ This app uses [_**MVVM (Model-View-ViewModel)**_]([https://proandroiddev.com/mvi
 
 # Run
 To run the app, you need to create a file named api.properties at project root with the fields:
-- API_KEY="insertkeyhere". You can get your Steam API Key [here](https://steamcommunity.com/dev)
+- API_KEY=insertkeyhere. You can get your Steam API Key [here](https://steamcommunity.com/dev)
 - BACKEND_URL="https://api.steampowered.com/"
 
 # Build
