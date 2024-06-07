@@ -94,7 +94,6 @@ internal fun SteamHunterApp(
         },
         containerColor = Color.Transparent,
         contentColor = MaterialTheme.colorScheme.onBackground,
-        contentWindowInsets = WindowInsets(0, 0, 0, 0),
         snackbarHost = { SnackbarHost(snackbarHostState) },
         bottomBar = {
             if (appState.shouldShowBottomBar) {

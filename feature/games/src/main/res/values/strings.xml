@@ -5,4 +5,6 @@
     <string name="feature_games_empty_msg">No achievements found for this game</string>
     <string name="feature_games_achievements">Achievements</string>
     <string name="feature_games_achievement_image">Achievement Image</string>
+    <string name="feature_games_unlocked_msg">Unlocked</string>
+    <string name="feature_games_locked_msg">Locked</string>
 </resources>

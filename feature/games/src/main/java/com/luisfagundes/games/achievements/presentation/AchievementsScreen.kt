@@ -14,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -22,12 +23,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.luisfagundes.designsystem.TryAgain
 import com.luisfagundes.designsystem.component.AchievementCard
 import com.luisfagundes.designsystem.component.SteamHunterTopAppBar
+import com.luisfagundes.domain.model.Achievement
 import com.luisfagundes.games.R
 
 private const val GOOGLE_SEARCH_URL = "https://www.google.com/search?q="
@@ -76,29 +79,13 @@ internal fun AchievementsScreen(
         contentAlignment = Alignment.Center
     ) {
         when (uiState) {
-            is AchievementsUiState.Success -> LazyColumn(
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                val sortedItems = uiState.achievements.sortedBy { it.achieved }
-                items(sortedItems) { achievement ->
-                    AchievementCard(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .align(Alignment.TopStart)
-                            .padding(horizontal = 16.dp)
-                            .padding(vertical = 4.dp),
-                        name = achievement.name,
-                        unlockedIconUrl = achievement.unlockedIconUrl,
-                        lockedIconUrl = achievement.lockedIconUrl,
-                        description = achievement.description,
-                        achieved = achievement.achieved,
-                        onAchievementClick = { onAchievementClick(achievement.name) }
-                    )
-                }
-                item {
-                    Spacer(modifier = Modifier.height(16.dp))
-                }
-            }
+            is AchievementsUiState.Success -> AchievementsList(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+                achievements = uiState.achievements,
+                onAchievementClick = onAchievementClick
+            )
 
             is AchievementsUiState.Error -> TryAgain(
                 modifier = Modifier,
@@ -113,6 +100,67 @@ internal fun AchievementsScreen(
             is AchievementsUiState.Loading -> CircularProgressIndicator()
         }
     }
+}
+
+@Composable
+private fun Title(text: String) {
+    Text(
+        text = text,
+        style = MaterialTheme.typography.titleLarge,
+        fontWeight = FontWeight.Bold,
+        modifier = Modifier.padding(vertical = 16.dp)
+    )
+}
+
+@Composable
+fun AchievementsList(
+    modifier: Modifier = Modifier,
+    achievements: List<Achievement>,
+    onAchievementClick: (String) -> Unit
+) {
+    LazyColumn(
+        modifier = modifier
+    ) {
+        val (unlocked, locked) = achievements.partition { achievement ->
+            achievement.achieved
+        }
+        item {
+            Title(stringResource(id = R.string.feature_games_locked_msg))
+        }
+        items(locked) { achievement ->
+            Achievement(
+                item = achievement,
+                onClick = onAchievementClick
+            )
+        }
+        item {
+            Title(stringResource(id = R.string.feature_games_unlocked_msg))
+        }
+        items(unlocked) { achievement ->
+            Achievement(
+                item = achievement,
+                onClick = onAchievementClick
+            )
+        }
+    }
+}
+
+@Composable
+private fun Achievement(
+    item: Achievement,
+    onClick: (String) -> Unit
+) {
+    AchievementCard(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 4.dp),
+        name = item.name,
+        unlockedIconUrl = item.unlockedIconUrl,
+        lockedIconUrl = item.lockedIconUrl,
+        description = item.description,
+        achieved = item.achieved,
+        onAchievementClick = { onClick(item.name) }
+    )
 }
 
 private fun buildSearchOnBrowserIntent(achievement: String): Intent {
