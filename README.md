@@ -96,3 +96,4 @@ This project uses many of the popular libraries, plugins and tools of the androi
 ### Plugin
 - [GradleVersionCatalog](https://docs.gradle.org/current/userguide/platforms.html) - Gradle's support for declaring and using dependencies.
 - [KSP](https://github.com/google/ksp) - Kotlin Symbol Processing (KSP) is an API that you can use to develop lightweight compiler plugins.
+- [Kotlin Serialization](https://kotlinlang.org/docs/serialization.html) - Serialization is the process of converting data used by an application to a format that can be transferred over a network or stored in a database or a file.  
