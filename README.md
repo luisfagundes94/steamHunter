@@ -5,6 +5,7 @@ Features:
 - Sort games by recently played, name, completion percentage or difficulty
 - Track game achievements
 - Easily search for how to complete an achievement
+- Click on achievement to search the web
 
 ## Screenshots
 <p float="left">
