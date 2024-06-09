@@ -30,15 +30,21 @@ android {
         release {
             isMinifyEnabled = true
             applicationIdSuffix = SteamHunterBuildType.RELEASE.applicationIdSuffix
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
             signingConfig = signingConfigs.named("debug").get()
         }
     }
 
     packaging {
-        resources {
-            excludes.add("/META-INF/{AL2.0,LGPL2.1}")
-        }
+        resources.excludes.addAll(
+            listOf(
+                "META-INF/LICENSE.md",
+                "META-INF/LICENSE-notice.md",
+            )
+        )
     }
 
     namespace = "com.luisfagundes.steamhunter"

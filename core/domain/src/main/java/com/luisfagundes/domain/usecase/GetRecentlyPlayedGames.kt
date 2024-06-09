@@ -1,21 +1,27 @@
 package com.luisfagundes.domain.usecase
 
+import com.luisfagundes.Dispatcher
+import com.luisfagundes.SteamHunterDispatchers
 import com.luisfagundes.domain.model.Game
 import com.luisfagundes.domain.repository.SteamRepository
 import com.luisfagundes.domain.repository.UserDataRepository
 import com.luisfagundes.result.Result
 import com.luisfagundes.result.getResultOrNull
 import com.luisfagundes.result.getResultOrThrow
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class GetRecentlyPlayedGames @Inject constructor(
     private val steamRepository: SteamRepository,
     private val userDataRepository: UserDataRepository,
+    @Dispatcher(SteamHunterDispatchers.IO) private val dispatcher: CoroutineDispatcher,
 ) {
-    suspend operator fun invoke(): Result<List<Game>> = runBlocking {
+    suspend operator fun invoke(): Result<List<Game>> = withContext(dispatcher) {
         try {
             val steamId = userDataRepository.userData.first().steamId
             val gamesWithAchievements = mutableListOf<Game>()

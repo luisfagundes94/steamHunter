@@ -7,5 +7,5 @@
     <string name="feature_games_achievement_image">Achievement Image</string>
     <string name="feature_games_unlocked_msg">Unlocked</string>
     <string name="feature_games_locked_msg">Locked</string>
-    <string name="recently_played">Recently Played</string>
+    <string name="feature_games_recently_played">Recently Played</string>
 </resources>

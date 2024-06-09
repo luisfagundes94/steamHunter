@@ -42,6 +42,8 @@ jacoco = "0.8.7"
 turbine = "1.0.0"
 kotlinVersion = "1.9.0"
 secrets = "2.0.1"
+mockk = "1.13.11"
+materialVersion = "1.10.0"
 
 [libraries]
 accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist" }
@@ -105,6 +107,7 @@ protobuf-protoc = { group = "com.google.protobuf", name = "protoc", version.ref 
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-kotlin-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofitKotlinxSerializationJson" }
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
+mockk = { group = "io.mockk", name="mockk-android", version.ref = "mockk" }
 
 # Build Logic Dependencies
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
@@ -112,6 +115,7 @@ android-tools-common = { group = "com.android.tools", name = "common", version.r
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 room-gradlePlugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "room" }
+material = { group = "com.google.android.material", name = "material", version.ref = "materialVersion" }
 
 [plugins]
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

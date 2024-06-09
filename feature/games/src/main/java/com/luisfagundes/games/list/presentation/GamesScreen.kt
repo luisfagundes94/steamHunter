@@ -13,6 +13,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,11 +33,15 @@ fun GamesRoute(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
+    LaunchedEffect(Unit) {
+        viewModel.getGames()
+    }
+
     GamesScreen(
         modifier = Modifier.fillMaxSize(),
         uiState = uiState,
         onGameClick = onGameClick,
-        onUpdateGames = { viewModel.getGames() }
+        onUpdateGames = { viewModel.getGames(forceRefresh = true) }
     )
 }
 
@@ -65,7 +70,7 @@ internal fun GamesScreen(
                     item {
                         Text(
                             modifier = Modifier.padding(16.dp),
-                            text = stringResource(R.string.recently_played),
+                            text = stringResource(R.string.feature_games_recently_played),
                             style = MaterialTheme.typography.titleLarge,
                             fontWeight = FontWeight.Bold
                         )
