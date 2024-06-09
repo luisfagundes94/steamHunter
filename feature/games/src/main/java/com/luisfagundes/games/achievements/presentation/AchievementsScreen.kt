@@ -132,23 +132,27 @@ fun AchievementsList(
         val (unlocked, locked) = achievements.partition { achievement ->
             achievement.achieved
         }
-        item {
-            Title(stringResource(id = R.string.feature_games_locked_msg))
+        if (locked.isNotEmpty()) {
+            item {
+                Title(stringResource(id = R.string.feature_games_locked_msg))
+            }
+            items(locked) { achievement ->
+                Achievement(
+                    item = achievement,
+                    onClick = onAchievementClick
+                )
+            }
         }
-        items(locked) { achievement ->
-            Achievement(
-                item = achievement,
-                onClick = onAchievementClick
-            )
-        }
-        item {
-            Title(stringResource(id = R.string.feature_games_unlocked_msg))
-        }
-        items(unlocked) { achievement ->
-            Achievement(
-                item = achievement,
-                onClick = onAchievementClick
-            )
+        if (unlocked.isNotEmpty()) {
+            item {
+                Title(stringResource(id = R.string.feature_games_unlocked_msg))
+            }
+            items(unlocked) { achievement ->
+                Achievement(
+                    item = achievement,
+                    onClick = onAchievementClick
+                )
+            }
         }
     }
 }
