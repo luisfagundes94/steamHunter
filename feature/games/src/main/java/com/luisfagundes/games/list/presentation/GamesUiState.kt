@@ -6,5 +6,4 @@ sealed interface GamesUiState {
     data object Loading : GamesUiState
     data object Error : GamesUiState
     data class Success(val games: List<Game>) : GamesUiState
-
 }
