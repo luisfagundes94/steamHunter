@@ -26,6 +26,11 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 17
+      - name: Create api.properties
+        run: |
+            echo "API_KEY=${{ secrets.API_KEY }}" >> ./api.properties
+            echo "BACKEND_URL=${{ secrets.BACKEND_URL }}" >> ./api.properties
+        working-directory: ./core/network
       - name: Unit tests
         run: ./gradlew testDebugUnitTest
         env:
