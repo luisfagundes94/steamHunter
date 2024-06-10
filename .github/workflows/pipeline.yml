@@ -30,7 +30,6 @@ jobs:
         run: |
           echo "API_KEY=${{ secrets.API_KEY }}" >> ./core/network/api.properties
           echo "BACKEND_URL=${{ secrets.BACKEND_URL }}" >> ./core/network/api.properties
-        working-directory: ./core/network
       - name: Unit tests
         run: ./gradlew testDebugUnitTest
 
