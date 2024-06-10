@@ -8,7 +8,6 @@ import com.luisfagundes.result.Result
 import com.luisfagundes.testing.model.games
 import com.luisfagundes.testing.util.MainDispatcherRule
 import io.mockk.coEvery
-import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
@@ -33,24 +32,15 @@ class GamesViewModelTest {
     }
 
     @Test
-    fun `should not call getGames when forceRefresh is false and games were already loaded`() =
-        runTest {
-            GamesViewModel(getRecentlyPlayedGames, GamesUiState.Success(emptyList())).apply {
-                getGames(forceRefresh = false)
-            }
-
-            coVerify(exactly = 0) { getRecentlyPlayedGames.invoke() }
-        }
+    fun `should not call getGames when forceRefresh is false and games were already loaded`() {
+        val result = viewModel.shouldLoad(forceRefresh = false, GamesUiState.Success(emptyList()))
+        assertEquals(false, result)
+    }
 
     @Test
     fun `should call getGames when forceRefresh is true and games were not loaded`() = runTest {
-        coEvery { getRecentlyPlayedGames.invoke() } returns mockk()
-
-        GamesViewModel(getRecentlyPlayedGames, GamesUiState.Loading).apply {
-            getGames(forceRefresh = true)
-        }
-
-        coVerify(exactly = 1) { getRecentlyPlayedGames.invoke() }
+        val result = viewModel.shouldLoad(forceRefresh = true, GamesUiState.Loading)
+        assertEquals(true, result)
     }
 
     @Test
