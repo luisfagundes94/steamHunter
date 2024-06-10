@@ -1,6 +1,6 @@
 package com.luisfagundes.data.mapper
 
-import com.luisfagundes.domain.model.Game
+import com.luisfagundes.model.Game
 import com.luisfagundes.model.GameResponse
 import com.luisfagundes.model.RecentlyPlayedGamesBodyResponse
 
@@ -9,7 +9,7 @@ private const val IMAGE_BASE_URL = "https://media.steampowered.com/steamcommunit
 object GameMapper {
     fun RecentlyPlayedGamesBodyResponse.mapToDomain() = this.response.games.map { it.mapToDomain() }
 
-    private fun GameResponse.mapToDomain() = Game(
+    private fun GameResponse.mapToDomain() = com.luisfagundes.model.Game(
         appId = this.appId,
         name = this.name,
         achievementsUnlocked = 0,

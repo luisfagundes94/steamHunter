@@ -1,4 +1,4 @@
-package com.luisfagundes.domain.model
+package com.luisfagundes.model
 
 enum class DarkThemeConfig {
     FOLLOW_SYSTEM,

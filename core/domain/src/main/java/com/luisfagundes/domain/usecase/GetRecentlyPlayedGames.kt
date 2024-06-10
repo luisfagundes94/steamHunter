@@ -2,7 +2,7 @@ package com.luisfagundes.domain.usecase
 
 import com.luisfagundes.Dispatcher
 import com.luisfagundes.SteamHunterDispatchers
-import com.luisfagundes.domain.model.Game
+import com.luisfagundes.model.Game
 import com.luisfagundes.domain.repository.SteamRepository
 import com.luisfagundes.domain.repository.UserDataRepository
 import com.luisfagundes.result.Result
@@ -10,9 +10,7 @@ import com.luisfagundes.result.getResultOrNull
 import com.luisfagundes.result.getResultOrThrow
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.async
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -21,10 +19,10 @@ class GetRecentlyPlayedGames @Inject constructor(
     private val userDataRepository: UserDataRepository,
     @Dispatcher(SteamHunterDispatchers.IO) private val dispatcher: CoroutineDispatcher,
 ) {
-    suspend operator fun invoke(): Result<List<Game>> = withContext(dispatcher) {
+    suspend operator fun invoke(): Result<List<com.luisfagundes.model.Game>> = withContext(dispatcher) {
         try {
             val steamId = userDataRepository.userData.first().steamId
-            val gamesWithAchievements = mutableListOf<Game>()
+            val gamesWithAchievements = mutableListOf<com.luisfagundes.model.Game>()
             val games = steamRepository.getRecentlyPlayedGames(steamId).getResultOrThrow()
 
             games.forEach { game ->
@@ -38,7 +36,7 @@ class GetRecentlyPlayedGames @Inject constructor(
                     val achievements = playerAchievements.playerStats?.achievements
 
                     gamesWithAchievements.add(
-                        Game(
+                        com.luisfagundes.model.Game(
                             appId = game.appId,
                             name = game.name,
                             achievementsUnlocked = achievements?.count { it.achieved } ?: 0,

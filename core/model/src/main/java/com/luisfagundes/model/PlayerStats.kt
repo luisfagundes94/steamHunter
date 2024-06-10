@@ -1,4 +1,4 @@
-package com.luisfagundes.domain.model
+package com.luisfagundes.model
 
 data class PlayerStats(
     val success: Boolean? = false,

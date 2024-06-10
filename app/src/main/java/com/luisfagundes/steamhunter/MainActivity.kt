@@ -10,26 +10,23 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.luisfagundes.data.utils.NetworkMonitor
 import com.luisfagundes.designsystem.theme.SteamHunterTheme
-import com.luisfagundes.domain.model.DarkThemeConfig
+import com.luisfagundes.model.DarkThemeConfig
 import com.luisfagundes.steamhunter.presentation.MainActivityUiState
 import com.luisfagundes.steamhunter.presentation.MainActivityUiState.Loading
 import com.luisfagundes.steamhunter.presentation.MainActivityUiState.Success
 import com.luisfagundes.steamhunter.presentation.MainActivityViewModel
 import com.luisfagundes.steamhunter.ui.SteamHunterApp
 import com.luisfagundes.steamhunter.ui.rememberSteamHunterAppState
-import com.luisfagundes.ui.LocalTimeZone
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
@@ -109,9 +106,9 @@ private fun shouldUseDarkTheme(
 ): Boolean = when (uiState) {
     Loading -> isSystemInDarkTheme()
     is Success -> when (uiState.userData.darkThemeConfig) {
-        DarkThemeConfig.FOLLOW_SYSTEM -> isSystemInDarkTheme()
-        DarkThemeConfig.LIGHT -> false
-        DarkThemeConfig.DARK -> true
+        com.luisfagundes.model.DarkThemeConfig.FOLLOW_SYSTEM -> isSystemInDarkTheme()
+        com.luisfagundes.model.DarkThemeConfig.LIGHT -> false
+        com.luisfagundes.model.DarkThemeConfig.DARK -> true
     }
 }
 

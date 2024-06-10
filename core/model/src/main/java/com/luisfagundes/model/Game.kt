@@ -1,4 +1,4 @@
-package com.luisfagundes.domain.model
+package com.luisfagundes.model
 
 data class Game(
     val appId: Int,

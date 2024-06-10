@@ -1,7 +1,7 @@
 package com.luisfagundes.domain.usecase
 
 import android.util.Log
-import com.luisfagundes.domain.model.Achievement
+import com.luisfagundes.model.Achievement
 import com.luisfagundes.domain.repository.SteamRepository
 import com.luisfagundes.domain.repository.UserDataRepository
 import com.luisfagundes.result.Result
@@ -14,7 +14,7 @@ class GetGameAchievements @Inject constructor(
     private val steamRepository: SteamRepository,
     private val userRepository: UserDataRepository
 ) {
-    suspend operator fun invoke(appId: Int): Result<List<Achievement>?> = runBlocking {
+    suspend operator fun invoke(appId: Int): Result<List<com.luisfagundes.model.Achievement>?> = runBlocking {
         try {
             val steamId = userRepository.userData.first().steamId
 

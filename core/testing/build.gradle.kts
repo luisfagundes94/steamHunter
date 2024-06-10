@@ -33,7 +33,7 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.domain)
+    implementation(projects.core.model)
 
     api(libs.junit)
     api(libs.turbine)
