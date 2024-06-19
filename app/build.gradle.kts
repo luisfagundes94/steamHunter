@@ -51,8 +51,6 @@ android {
 }
 
 dependencies {
-    implementation(projects.sync.work)
-
     implementation(projects.core.data)
     implementation(projects.core.datastore)
     implementation(projects.core.protodata)

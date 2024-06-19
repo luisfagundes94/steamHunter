@@ -20,7 +20,6 @@ rootProject.name = "SteamHunter"
 include(":app")
 include(":core:data")
 include(":core:common")
-include(":sync:work")
 include(":core:designsystem")
 include(":feature:games")
 include(":core:ui")
