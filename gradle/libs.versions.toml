@@ -44,6 +44,7 @@ kotlinVersion = "1.9.0"
 secrets = "2.0.1"
 mockk = "1.13.11"
 materialVersion = "1.10.0"
+leakCanary = "2.14"
 
 [libraries]
 accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist" }
@@ -108,6 +109,7 @@ retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.r
 retrofit-kotlin-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofitKotlinxSerializationJson" }
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 mockk = { group = "io.mockk", name="mockk-android", version.ref = "mockk" }
+leakCanary = { group = "com.squareup.leakcanary", name="leakcanary-android", version.ref="leakCanary" }
 
 # Build Logic Dependencies
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
