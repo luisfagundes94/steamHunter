@@ -1,4 +1,4 @@
-# SteamHunter (WIP)
+# SteamHunter
 Steam Achievements Tracking App
 
 Features:
