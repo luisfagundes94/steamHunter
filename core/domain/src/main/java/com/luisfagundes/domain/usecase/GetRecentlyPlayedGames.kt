@@ -19,10 +19,10 @@ class GetRecentlyPlayedGames @Inject constructor(
     private val userDataRepository: UserDataRepository,
     @Dispatcher(SteamHunterDispatchers.IO) private val dispatcher: CoroutineDispatcher,
 ) {
-    suspend operator fun invoke(): Result<List<com.luisfagundes.model.Game>> = withContext(dispatcher) {
+    suspend operator fun invoke(): Result<List<Game>> = withContext(dispatcher) {
         try {
             val steamId = userDataRepository.userData.first().steamId
-            val gamesWithAchievements = mutableListOf<com.luisfagundes.model.Game>()
+            val gamesWithAchievements = mutableListOf<Game>()
             val games = steamRepository.getRecentlyPlayedGames(steamId).getResultOrThrow()
 
             games.forEach { game ->
@@ -36,7 +36,7 @@ class GetRecentlyPlayedGames @Inject constructor(
                     val achievements = playerAchievements.playerStats?.achievements
 
                     gamesWithAchievements.add(
-                        com.luisfagundes.model.Game(
+                        Game(
                             appId = game.appId,
                             name = game.name,
                             achievementsUnlocked = achievements?.count { it.achieved } ?: 0,
