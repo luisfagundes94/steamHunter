@@ -28,8 +28,8 @@ jobs:
           java-version: 17
       - name: Create api.properties
         run: |
-          echo "API_KEY=${{ secrets.API_KEY }}" >> ./core/network/api.properties
-          echo "BACKEND_URL=${{ secrets.BACKEND_URL }}" >> ./core/network/api.properties
+          echo "API_KEY=${{ secrets.API_KEY }}" >> api.properties
+          echo "BACKEND_URL=${{ secrets.BACKEND_URL }}" >> api.properties
       - name: Unit tests
         run: ./gradlew testDebugUnitTest
 
