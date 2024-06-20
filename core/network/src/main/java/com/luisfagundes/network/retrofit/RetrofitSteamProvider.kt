@@ -1,7 +1,7 @@
 package com.luisfagundes.network.retrofit
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.luisfagundes.datasource.NetworkDataSource
+import com.luisfagundes.datasource.SteamDataSource
 import com.luisfagundes.model.GameSchemaBodyResponse
 import com.luisfagundes.model.RecentlyPlayedGamesBodyResponse
 import com.luisfagundes.model.PlayerAchievementsResponse
@@ -16,10 +16,10 @@ import javax.inject.Singleton
 private const val BASE_URL = BuildConfig.BACKEND_URL
 
 @Singleton
-class RetrofitNetworkProvider @Inject constructor(
+class RetrofitSteamProvider @Inject constructor(
     json: Json,
     okHttpCallFactory: dagger.Lazy<Call.Factory>,
-) : NetworkDataSource {
+) : SteamDataSource {
 
     private val api = Retrofit.Builder()
         .baseUrl(BASE_URL)

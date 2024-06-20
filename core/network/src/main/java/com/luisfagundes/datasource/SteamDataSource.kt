@@ -4,7 +4,7 @@ import com.luisfagundes.model.GameSchemaBodyResponse
 import com.luisfagundes.model.RecentlyPlayedGamesBodyResponse
 import com.luisfagundes.model.PlayerAchievementsResponse
 
-interface NetworkDataSource {
+interface SteamDataSource {
     suspend fun getRecentlyPlayedGames(steamId: String): RecentlyPlayedGamesBodyResponse
     suspend fun getPlayerAchievements(
         steamId: String,
