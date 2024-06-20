@@ -6,8 +6,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface UserDataRepository {
 
-    val userData: Flow<com.luisfagundes.model.UserData>
+    val userData: Flow<UserData>
 
-    suspend fun setDarkThemeConfig(darkThemeConfig: com.luisfagundes.model.DarkThemeConfig)
+    suspend fun setDarkThemeConfig(darkThemeConfig: DarkThemeConfig)
     suspend fun setUserSteamId(steamId: String)
 }
