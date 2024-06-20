@@ -14,33 +14,10 @@ class GetGameAchievements @Inject constructor(
     private val steamRepository: SteamRepository,
     private val userRepository: UserDataRepository
 ) {
-    suspend operator fun invoke(appId: Int): Result<List<com.luisfagundes.model.Achievement>?> = runBlocking {
-        try {
+    suspend operator fun invoke(appId: Int): Result<List<Achievement>?> {
+        return try {
             val steamId = userRepository.userData.first().steamId
-
-            val playerAchievements = steamRepository.getPlayerAchievements(
-                steamId = steamId,
-                appId = appId
-            ).getResultOrThrow()
-            val gameSchema = steamRepository.getSchemaForGame(
-                steamId = steamId,
-                appId = appId
-            ).getResultOrThrow()
-
-            val achievementSchema = gameSchema.availableGameStats.achievements
-            val achievementSchemaMap = achievementSchema.associateBy { it.name }
-
-            val data = playerAchievements?.playerStats?.achievements?.map { achievement ->
-                val schema = achievementSchemaMap[achievement.apiName]
-                achievement.copy(
-                    gameName = gameSchema.gameName,
-                    name = schema?.displayName ?: "",
-                    description = schema?.description ?: "",
-                    unlockedIconUrl = schema?.iconUrl ?: "",
-                    lockedIconUrl = schema?.grayIconUrl ?: ""
-                )
-            }
-            Result.Success(data)
+            steamRepository.getAchievements(steamId, appId)
         } catch (e: Exception) {
             Log.e("GetGameAchievements", e.stackTraceToString())
             Result.Error(e)

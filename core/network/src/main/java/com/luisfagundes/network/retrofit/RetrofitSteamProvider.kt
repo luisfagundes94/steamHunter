@@ -33,7 +33,7 @@ class RetrofitSteamProvider @Inject constructor(
     override suspend fun getRecentlyPlayedGames(steamId: String): RecentlyPlayedGamesBodyResponse =
         api.getRecentlyPlayedGames(steamId)
 
-    override suspend fun getPlayerAchievements(
+    override suspend fun getPlayer(
         steamId: String,
         appId: Int,
     ): PlayerAchievementsResponse = api.getPlayerAchievements(

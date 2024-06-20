@@ -6,7 +6,7 @@ import com.luisfagundes.model.PlayerAchievementsResponse
 
 interface SteamDataSource {
     suspend fun getRecentlyPlayedGames(steamId: String): RecentlyPlayedGamesBodyResponse
-    suspend fun getPlayerAchievements(
+    suspend fun getPlayer(
         steamId: String,
         appId: Int,
     ): PlayerAchievementsResponse

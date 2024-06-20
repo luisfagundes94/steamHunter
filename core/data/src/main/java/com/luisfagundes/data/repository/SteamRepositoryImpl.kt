@@ -1,41 +1,57 @@
 package com.luisfagundes.data.repository
 
+import com.luisfagundes.Dispatcher
+import com.luisfagundes.SteamHunterDispatchers.IO
+import com.luisfagundes.data.mapper.GameMapperImpl.mapToDomain
+import com.luisfagundes.data.mapper.GameMapperImpl.mergeWith
 import com.luisfagundes.data.mapper.GameSchemaMapper.mapToDomain
-import com.luisfagundes.data.mapper.GameMapper.mapToDomain
+import com.luisfagundes.data.mapper.GameSchemaMapper.mergeWith
 import com.luisfagundes.data.mapper.PlayerAchievementsMapper.mapToDomain
-import com.luisfagundes.datasource.NetworkDataSource
-import com.luisfagundes.result.Result
+import com.luisfagundes.datasource.SteamDataSource
 import com.luisfagundes.domain.repository.SteamRepository
-import com.luisfagundes.result.safeApiCall
+import com.luisfagundes.model.Game
+import com.luisfagundes.result.safeAsyncRequest
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.async
 import javax.inject.Inject
 
 internal class SteamRepositoryImpl @Inject constructor(
-    private val network: NetworkDataSource
+    private val steamDataSource: SteamDataSource,
+    @Dispatcher(IO) private val dispatcher: CoroutineDispatcher,
 ) : SteamRepository {
-    override suspend fun getRecentlyPlayedGames(steamId: String) = safeApiCall {
-        network.getRecentlyPlayedGames(steamId).mapToDomain()
+
+    override suspend fun getGamesWithAchievements(
+        steamId: String
+    ) = safeAsyncRequest(dispatcher) {
+        val gamesWithAchievements = mutableListOf<Game>()
+        val games = steamDataSource.getRecentlyPlayedGames(steamId).mapToDomain()
+
+        games.forEach { game ->
+            async {
+                val achievements = getPlayer(steamId, game).stats?.achievements
+                gamesWithAchievements.add(game.mergeWith(achievements))
+            }.await()
+        }
+
+        gamesWithAchievements
     }
 
-    override suspend fun getPlayerAchievements(
+    override suspend fun getAchievements(
         steamId: String,
         appId: Int
-    ) = try {
-        val data = network.getPlayerAchievements(
-            steamId = steamId,
-            appId = appId,
-        ).mapToDomain()
-        Result.Success(data)
-    } catch (e: Exception) {
-        Result.Success(null)
+    ) = safeAsyncRequest(dispatcher) {
+        val player = steamDataSource.getPlayer(steamId, appId).mapToDomain()
+        val gameSchema = steamDataSource.getSchemaForGame(steamId, appId).mapToDomain()
+        val achievements = player.stats?.achievements
+
+        achievements?.mergeWith(gameSchema) ?: emptyList()
     }
 
-    override suspend fun getSchemaForGame(
+    private suspend fun getPlayer(
         steamId: String,
-        appId: Int
-    ) = safeApiCall {
-        network.getSchemaForGame(
-            steamId = steamId,
-            appId = appId,
-        ).mapToDomain()
-    }
+        game: Game
+    ) = steamDataSource.getPlayer(
+        steamId = steamId,
+        appId = game.appId
+    ).mapToDomain()
 }
