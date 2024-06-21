@@ -4,6 +4,7 @@ import com.luisfagundes.domain.repository.SteamRepository
 import com.luisfagundes.domain.repository.UserDataRepository
 import com.luisfagundes.domain.usecase.GetGameAchievements
 import com.luisfagundes.result.Result
+import com.luisfagundes.testing.model.STEAM_ID
 import com.luisfagundes.testing.model.achievements
 import com.luisfagundes.testing.model.userData
 import io.mockk.coEvery
@@ -30,33 +31,31 @@ class GetGameAchievementsTest {
 
     @Test
     fun `invoke should return achievements list when repository call is successful`() = runTest {
-        val steamId = "123"
         val appId = 67890
 
         coEvery { userRepository.userData } returns flowOf(userData)
-        coEvery { steamRepository.getAchievements(steamId, appId) } returns Result.Success(achievements)
+        coEvery { steamRepository.getAchievements(STEAM_ID, appId) } returns Result.Success(achievements)
 
         val result = getGameAchievements(appId)
 
         assertEquals(result, Result.Success(achievements))
         coVerify { userRepository.userData }
-        coVerify { steamRepository.getAchievements(steamId, appId) }
+        coVerify { steamRepository.getAchievements(STEAM_ID, appId) }
     }
 
     @Test
     fun `invoke should return error when repository call fails`() = runTest {
-        val steamId = "123"
         val appId = 67890
         val exception = Exception("Error")
 
         coEvery { userRepository.userData } returns flowOf(userData)
-        coEvery { steamRepository.getAchievements(steamId, appId) } returns Result.Error(exception)
+        coEvery { steamRepository.getAchievements(STEAM_ID, appId) } returns Result.Error(exception)
 
         val result = getGameAchievements(appId)
 
         assertEquals(result, Result.Error(exception))
         coVerify { userRepository.userData }
-        coVerify { steamRepository.getAchievements(steamId, appId) }
+        coVerify { steamRepository.getAchievements(STEAM_ID, appId) }
     }
 
     @Test
