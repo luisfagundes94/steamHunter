@@ -9,6 +9,7 @@ android {
 
 dependencies {
     api(libs.kotlinx.datetime)
+    api(libs.timber)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.turbine)
 }
