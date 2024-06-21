@@ -3,7 +3,7 @@ package com.luisfagundes.testing.model
 import com.luisfagundes.model.Achievement
 
 val achievements = listOf(
-    com.luisfagundes.model.Achievement(
+    Achievement(
         apiName = "hunt",
         gameName = "Hunt: Showdown",
         name = "Defeat one enemy",
