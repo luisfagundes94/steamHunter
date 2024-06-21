@@ -9,5 +9,12 @@ val achievements = listOf(
         name = "Defeat one enemy",
         achieved = false,
         unlockDate = ""
+    ),
+    Achievement(
+        apiName = "hunt",
+        gameName = "Hunt: Showdown",
+        name = "Defeat one enemy",
+        achieved = true,
+        unlockDate = ""
     )
 )
