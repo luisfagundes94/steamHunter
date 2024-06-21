@@ -12,7 +12,7 @@ class GetRecentlyPlayedGames @Inject constructor(
 ) {
     suspend operator fun invoke() = try {
         val steamId = userDataRepository.userData.first().steamId
-        steamRepository.getGamesWithAchievements(steamId, )
+        steamRepository.getGamesWithAchievements(steamId)
     } catch (e: Exception) {
         Result.Error(e)
     }
