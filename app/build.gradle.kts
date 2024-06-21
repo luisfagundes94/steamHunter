@@ -23,6 +23,10 @@ android {
         }
     }
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     buildTypes {
         debug {
             applicationIdSuffix = SteamHunterBuildType.DEBUG.applicationIdSuffix
