@@ -1,10 +1,10 @@
 [versions]
-androidGradlePlugin = "8.4.1"
-androidTools = "31.4.1"
-androidxComposeMaterial3Adaptive = "1.0.0-beta02"
+androidGradlePlugin = "8.4.2"
+androidTools = "31.5.0"
+androidxComposeMaterial3Adaptive = "1.0.0-beta03"
 androidxWork = "2.9.0"
 androidxDataStore = "1.1.1"
-androidxLifecycle = "2.8.1"
+androidxLifecycle = "2.8.2"
 androidxComposeRuntimeTracing = "1.0.0-beta01"
 androidxTracing = "1.3.0-alpha02"
 androidxCoreSplashscreen = "1.0.1"
@@ -17,14 +17,14 @@ coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
-lifecycleRuntimeKtx = "2.8.1"
+lifecycleRuntimeKtx = "2.8.2"
 activityCompose = "1.9.0"
-composeBom = "2024.05.00"
+composeBom = "2024.06.00"
 androidxHiltNavigationCompose = "1.2.0"
 androidxNavigation = "2.7.7"
 appcompat = "1.7.0"
 material = "1.12.0"
-material3 = "1.3.0-beta02"
+material3 = "1.3.0-beta03"
 moduleGraph = "2.5.0"
 kotlinxCoroutines = "1.8.0"
 kotlinxDatetime = "0.5.0"
@@ -43,8 +43,9 @@ turbine = "1.0.0"
 kotlinVersion = "1.9.0"
 secrets = "2.0.1"
 mockk = "1.13.11"
-materialVersion = "1.10.0"
+materialVersion = "1.12.0"
 leakCanary = "2.14"
+timber = "5.0.1"
 
 [libraries]
 accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist" }
@@ -108,8 +109,9 @@ protobuf-protoc = { group = "com.google.protobuf", name = "protoc", version.ref 
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-kotlin-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofitKotlinxSerializationJson" }
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
-mockk = { group = "io.mockk", name="mockk-android", version.ref = "mockk" }
-leakCanary = { group = "com.squareup.leakcanary", name="leakcanary-android", version.ref="leakCanary" }
+mockk = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
+leakCanary = { group = "com.squareup.leakcanary", name = "leakcanary-android", version.ref = "leakCanary" }
+timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
 
 # Build Logic Dependencies
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
