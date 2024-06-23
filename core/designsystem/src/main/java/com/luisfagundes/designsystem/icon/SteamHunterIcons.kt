@@ -12,11 +12,9 @@ import androidx.compose.material.icons.rounded.Settings
 
 object SteamHunterIcons {
     val Games = Icons.Rounded.Games
-    val ArrowBack = Icons.AutoMirrored.Rounded.ArrowBack
     val About = Icons.Rounded.Info
     val Profile = Icons.Rounded.Person
     val Search = Icons.Rounded.Search
     val MoreVert = Icons.Rounded.MoreVert
     val Sort = Icons.AutoMirrored.Rounded.Sort
-    val Settings = Icons.Rounded.Settings
 }

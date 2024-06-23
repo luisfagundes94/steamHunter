@@ -1,9 +1,9 @@
 import com.android.build.api.dsl.ApplicationExtension
-import com.luisfagundes.configureGradleManagedDevices
 import com.luisfagundes.convention.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
+import utils.Constants.API_LEVEL
 
 class AndroidApplicationConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
@@ -15,10 +15,9 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
 
             extensions.configure<ApplicationExtension> {
                 configureKotlinAndroid(this)
-                defaultConfig.targetSdk = 34
+                defaultConfig.targetSdk = API_LEVEL
                 @Suppress("UnstableApiUsage")
                 testOptions.animationsDisabled = true
-                configureGradleManagedDevices(this)
             }
         }
     }

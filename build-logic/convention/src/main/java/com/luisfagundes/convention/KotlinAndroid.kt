@@ -1,7 +1,6 @@
 package com.luisfagundes.convention
 
 import com.android.build.api.dsl.CommonExtension
-import com.luisfagundes.libs
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPluginExtension
@@ -10,6 +9,8 @@ import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.provideDelegate
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import utils.Constants.API_LEVEL
+import utils.Constants.MIN_SKD
 
 /**
  * Configure base Kotlin with Android options
@@ -18,10 +19,10 @@ internal fun Project.configureKotlinAndroid(
     commonExtension: CommonExtension<*, *, *, *, *, *>,
 ) {
     commonExtension.apply {
-        compileSdk = 34
+        compileSdk = API_LEVEL
 
         defaultConfig {
-            minSdk = 24
+            minSdk = MIN_SKD
         }
 
         compileOptions {

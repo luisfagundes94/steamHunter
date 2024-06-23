@@ -1,4 +1,4 @@
-import com.luisfagundes.SteamHunterBuildType
+import com.luisfagundes.convention.SteamHunterBuildType
 
 plugins {
     alias(libs.plugins.steamhunter.android.application)
@@ -29,11 +29,11 @@ android {
 
     buildTypes {
         debug {
-            applicationIdSuffix = SteamHunterBuildType.DEBUG.applicationIdSuffix
+            applicationIdSuffix = com.luisfagundes.convention.SteamHunterBuildType.DEBUG.applicationIdSuffix
         }
         release {
             isMinifyEnabled = true
-            applicationIdSuffix = SteamHunterBuildType.RELEASE.applicationIdSuffix
+            applicationIdSuffix = com.luisfagundes.convention.SteamHunterBuildType.RELEASE.applicationIdSuffix
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

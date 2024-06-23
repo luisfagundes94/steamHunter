@@ -29,8 +29,14 @@ subprojects {
 detekt {
     autoCorrect = true
     parallel = true
-    buildUponDefaultConfig = true
-    source.setFrom(files(rootDir))
+    source.setFrom(
+        files(
+            "src/main/java",
+            "src/test/java",
+            "src/main/kotlin",
+            "src/test/kotlin"
+        )
+    )
 }
 
 dependencies {

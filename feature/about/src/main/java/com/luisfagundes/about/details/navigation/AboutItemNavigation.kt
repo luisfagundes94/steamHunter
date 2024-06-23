@@ -7,15 +7,15 @@ import com.luisfagundes.about.details.presentation.AboutItemRoute
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class AboutItemRoute(
+data class AboutItemNavigation(
     val descriptionResId: Int,
 )
 
 fun NavGraphBuilder.aboutItemScreen(
     onBackClick: () -> Unit
 ) {
-    composable<AboutItemRoute> {
-        val args = it.toRoute<AboutItemRoute>()
+    composable<AboutItemNavigation> {
+        val args = it.toRoute<AboutItemNavigation>()
         AboutItemRoute(
             onBackClick = onBackClick,
             descriptionResId = args.descriptionResId

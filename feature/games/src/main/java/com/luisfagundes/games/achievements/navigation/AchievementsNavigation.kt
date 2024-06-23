@@ -6,14 +6,14 @@ import com.luisfagundes.games.achievements.presentation.AchievementsRoute
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class AchievementsRoute(
+data class AchievementsNavigation(
     val gameId: Int
 )
 
 fun NavGraphBuilder.achievementsScreen(
     onBackClick: () -> Unit
 ) {
-    composable<AchievementsRoute> {
+    composable<AchievementsNavigation> {
         AchievementsRoute(
             onBackClick = onBackClick
         )

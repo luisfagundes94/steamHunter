@@ -7,7 +7,7 @@ import androidx.navigation.toRoute
 import com.luisfagundes.Dispatcher
 import com.luisfagundes.SteamHunterDispatchers.IO
 import com.luisfagundes.domain.usecase.GetGameAchievements
-import com.luisfagundes.games.achievements.navigation.AchievementsRoute
+import com.luisfagundes.games.achievements.navigation.AchievementsNavigation
 import com.luisfagundes.games.achievements.presentation.AchievementsUiState.Error
 import com.luisfagundes.games.achievements.presentation.AchievementsUiState.Loading
 import com.luisfagundes.games.achievements.presentation.AchievementsUiState.Success
@@ -29,7 +29,7 @@ class AchievementsViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<AchievementsUiState>(Loading)
     val uiState = _uiState.asStateFlow()
 
-    private val args = savedStateHandle.toRoute<AchievementsRoute>()
+    private val args = savedStateHandle.toRoute<AchievementsNavigation>()
 
     fun getAchievements() = viewModelScope.launch(dispatcher) {
         _uiState.value = Loading

@@ -1,5 +1,5 @@
 import com.android.build.gradle.LibraryExtension
-import com.luisfagundes.libs
+import com.luisfagundes.convention.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure

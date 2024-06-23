@@ -60,8 +60,6 @@ fun SteamHunterApp(
         SteamHunterApp(
             appState = appState,
             snackbarHostState = snackBarHostState,
-            showSettingsDialog = showSettingsDialog,
-            onSettingsDismissed = { showSettingsDialog = false },
             onTopAppBarActionClick = { showSettingsDialog = true },
         )
     }
@@ -72,8 +70,6 @@ fun SteamHunterApp(
 internal fun SteamHunterApp(
     appState: SteamHunterAppState,
     snackbarHostState: SnackbarHostState,
-    showSettingsDialog: Boolean,
-    onSettingsDismissed: () -> Unit,
     onTopAppBarActionClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -117,13 +113,6 @@ internal fun SteamHunterApp(
                 }
                 SteamHunterNavHost(
                     appState = appState,
-                    onShowSnackBar = { message, action ->
-                        snackbarHostState.showSnackbar(
-                            message = message,
-                            actionLabel = action,
-                            duration = Short,
-                        ) == ActionPerformed
-                    },
                     modifier = if (destination != null) {
                         Modifier.consumeWindowInsets(
                             WindowInsets.safeDrawing.only(WindowInsetsSides.Top),
