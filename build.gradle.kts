@@ -1,3 +1,5 @@
+import io.gitlab.arturbosch.detekt.Detekt
+
 buildscript {
     repositories {
         google()
@@ -5,6 +7,7 @@ buildscript {
     }
     dependencies {
         classpath(libs.android.gradlePlugin)
+        classpath(libs.detekt.gradlePlugin)
     }
 }
 
@@ -17,6 +20,14 @@ plugins {
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.secrets) apply false
     alias(libs.plugins.room) apply false
+    alias(libs.plugins.detekt) apply true
     alias(libs.plugins.org.jetbrains.kotlin.android) apply false
     alias(libs.plugins.compose.compiler) apply false
+}
+
+tasks.withType<Detekt>().configureEach {
+    reports {
+        html.required.set(true)
+        md.required.set(true)
+    }
 }

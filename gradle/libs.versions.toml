@@ -7,6 +7,7 @@ androidxLifecycle = "2.8.2"
 androidxCoreSplashscreen = "1.0.1"
 androidDesugarJdkLibs = "2.0.4"
 accompanist = "0.34.0"
+detekt = "1.23.3"
 coil = "2.6.0"
 okhttp = "4.12.0"
 kotlin = "2.0.0"
@@ -85,6 +86,7 @@ timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "tim
 
 # Build Logic Dependencies
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
+detekt-gradlePlugin = {group = "io.gitlab.arturbosch.detekt", name="detekt-gradle-plugin", version.ref = "detekt" }
 android-tools-common = { group = "com.android.tools", name = "common", version.ref = "androidTools" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
@@ -94,6 +96,7 @@ room-gradlePlugin = { group = "androidx.room", name = "room-gradle-plugin", vers
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
