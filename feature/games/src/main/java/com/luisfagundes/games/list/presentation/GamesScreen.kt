@@ -25,6 +25,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.luisfagundes.designsystem.TryAgain
 import com.luisfagundes.designsystem.component.GameCard
 import com.luisfagundes.games.R
+import com.luisfagundes.utils.doNothing
 
 @Composable
 fun GamesRoute(
@@ -95,7 +96,7 @@ internal fun GamesScreen(
                     onClick = onUpdateGames
                 )
 
-                is GamesUiState.Loading -> CircularProgressIndicator()
+                else -> doNothing()
             }
         }
     }

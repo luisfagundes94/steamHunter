@@ -31,6 +31,7 @@ import com.luisfagundes.designsystem.component.AchievementCard
 import com.luisfagundes.designsystem.component.SteamHunterTopAppBar
 import com.luisfagundes.model.Achievement
 import com.luisfagundes.games.R
+import com.luisfagundes.utils.doNothing
 
 private const val GOOGLE_SEARCH_URL = "https://www.google.com/search?q="
 private const val ACHIEVEMENT = "achievement"
@@ -101,7 +102,7 @@ internal fun AchievementsScreen(
                     text = stringResource(R.string.feature_games_empty_msg),
                 )
 
-                is AchievementsUiState.Loading -> CircularProgressIndicator()
+                else -> doNothing()
             }
         }
     }
