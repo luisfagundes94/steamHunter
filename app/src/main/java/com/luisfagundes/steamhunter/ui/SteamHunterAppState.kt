@@ -11,12 +11,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
-import com.luisfagundes.about.navigation.ABOUT_ROUTE
-import com.luisfagundes.about.navigation.navigateToAbout
+import androidx.navigation.toRoute
+import com.luisfagundes.about.list.navigation.AboutNavigation
+import com.luisfagundes.about.list.navigation.navigateToAbout
 import com.luisfagundes.data.utils.NetworkMonitor
-import com.luisfagundes.games.list.navigation.GAMES_ROUTE
+import com.luisfagundes.games.list.navigation.GamesNavigation
 import com.luisfagundes.games.list.navigation.navigateToGames
-import com.luisfagundes.profile.navigation.PROFILE_ROUTE
+import com.luisfagundes.profile.navigation.ProfileNavigation
 import com.luisfagundes.profile.navigation.navigateToProfile
 import com.luisfagundes.search.navigation.navigateToSearch
 import com.luisfagundes.steamhunter.navigation.TopLevelDestination
@@ -60,9 +61,9 @@ class SteamHunterAppState(
 
     val currentTopLevelDestination: TopLevelDestination?
         @Composable get() = when (currentDestination?.route) {
-            GAMES_ROUTE -> TopLevelDestination.GAMES
-            PROFILE_ROUTE -> TopLevelDestination.PROFILE
-            ABOUT_ROUTE -> TopLevelDestination.ABOUT
+            GamesNavigation::class.java.name -> TopLevelDestination.GAMES
+            ProfileNavigation::class.java.name -> TopLevelDestination.PROFILE
+            AboutNavigation::class.java.name -> TopLevelDestination.ABOUT
             else -> null
         }
 

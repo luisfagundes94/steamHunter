@@ -28,7 +28,7 @@ import com.luisfagundes.games.R
 
 @Composable
 fun GamesRoute(
-    onGameClick: (String) -> Unit,
+    onGameClick: (Int) -> Unit,
     viewModel: GamesViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -50,7 +50,7 @@ fun GamesRoute(
 internal fun GamesScreen(
     modifier: Modifier = Modifier,
     uiState: GamesUiState,
-    onGameClick: (String) -> Unit,
+    onGameClick: (Int) -> Unit,
     onUpdateGames: () -> Unit = {}
 ) {
     PullToRefreshBox(
@@ -78,7 +78,7 @@ internal fun GamesScreen(
                     items(uiState.games) { game ->
                         GameCard(
                             modifier = Modifier
-                                .clickable { onGameClick(game.appId.toString()) }
+                                .clickable { onGameClick(game.appId) }
                                 .fillMaxWidth()
                                 .padding(horizontal = 16.dp)
                                 .padding(vertical = 4.dp),

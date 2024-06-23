@@ -3,11 +3,11 @@ package com.luisfagundes.games.achievements.presentation
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.toRoute
 import com.luisfagundes.Dispatcher
 import com.luisfagundes.SteamHunterDispatchers.IO
 import com.luisfagundes.domain.usecase.GetGameAchievements
-import com.luisfagundes.games.achievements.navigation.Args
-import com.luisfagundes.games.achievements.presentation.AchievementsUiState.Empty
+import com.luisfagundes.games.achievements.navigation.AchievementsRoute
 import com.luisfagundes.games.achievements.presentation.AchievementsUiState.Error
 import com.luisfagundes.games.achievements.presentation.AchievementsUiState.Loading
 import com.luisfagundes.games.achievements.presentation.AchievementsUiState.Success
@@ -29,16 +29,13 @@ class AchievementsViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<AchievementsUiState>(Loading)
     val uiState = _uiState.asStateFlow()
 
-    private val args = Args(savedStateHandle)
+    private val args = savedStateHandle.toRoute<AchievementsRoute>()
 
     fun getAchievements() = viewModelScope.launch(dispatcher) {
         _uiState.value = Loading
-        val gameId = args.gameId.toInt()
+        val gameId = args.gameId
         _uiState.value = when (val result = getGameAchievements(gameId)) {
-            is Result.Success -> {
-                if (result.data == null) Empty
-                else Success(result.data ?: emptyList())
-            }
+            is Result.Success -> Success(result.data)
             is Result.Error -> Error
         }
     }

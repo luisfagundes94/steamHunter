@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="feature_about_title">About</string>
+    <string name="feature_about_achievements_not_showing">Achievements not showing</string>
+    <string name="feature_about_achievements_not_showing_description">You will need to update your Steam profile privacy settings in order for the app to work properly.</string>
+    <string name="feature_about_details">Details</string>
 </resources>

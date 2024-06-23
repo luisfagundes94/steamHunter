@@ -55,13 +55,13 @@ fun SteamHunterApp(
     var showSettingsDialog by rememberSaveable { mutableStateOf(false) }
 
     SteamHunterBackground(modifier = modifier) {
-        val snackbarHostState = remember { SnackbarHostState() }
+        val snackBarHostState = remember { SnackbarHostState() }
         val isOffline by appState.isOffline.collectAsStateWithLifecycle()
         val notConnectedMessage = stringResource(R.string.not_connected)
 
         LaunchedEffect(isOffline) {
             if (isOffline) {
-                snackbarHostState.showSnackbar(
+                snackBarHostState.showSnackbar(
                     message = notConnectedMessage,
                     duration = Indefinite,
                 )
@@ -70,7 +70,7 @@ fun SteamHunterApp(
 
         SteamHunterApp(
             appState = appState,
-            snackbarHostState = snackbarHostState,
+            snackbarHostState = snackBarHostState,
             showSettingsDialog = showSettingsDialog,
             onSettingsDismissed = { showSettingsDialog = false },
             onTopAppBarActionClick = { showSettingsDialog = true },
@@ -147,7 +147,7 @@ internal fun SteamHunterApp(
 
                 SteamHunterNavHost(
                     appState = appState,
-                    onShowSnackbar = { message, action ->
+                    onShowSnackBar = { message, action ->
                         snackbarHostState.showSnackbar(
                             message = message,
                             actionLabel = action,

@@ -4,15 +4,15 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
+import kotlinx.serialization.Serializable
 
-const val PROFILE_ROUTE = "profile_route/"
+@Serializable
+object ProfileNavigation
 
-fun NavController.navigateToProfile(navOptions: NavOptions) = navigate(PROFILE_ROUTE, navOptions)
+fun NavController.navigateToProfile(navOptions: NavOptions) = navigate(ProfileNavigation, navOptions)
 
 fun NavGraphBuilder.profileScreen() {
-    composable(
-        route = PROFILE_ROUTE,
-    ) {
+    composable<ProfileNavigation>{
         // ProfileScreen()
     }
 }

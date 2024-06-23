@@ -5,17 +5,17 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.luisfagundes.games.list.presentation.GamesRoute
+import kotlinx.serialization.Serializable
 
-const val GAMES_ROUTE = "games_route/"
+@Serializable
+object GamesNavigation
 
-fun NavController.navigateToGames(navOptions: NavOptions) = navigate(GAMES_ROUTE, navOptions)
+fun NavController.navigateToGames(navOptions: NavOptions) = navigate(GamesNavigation, navOptions)
 
 fun NavGraphBuilder.gamesScreen(
-    onGameClick: (String) -> Unit
+    onGameClick: (Int) -> Unit
 ) {
-    composable(
-        route = GAMES_ROUTE,
-    ) {
+    composable<GamesNavigation> {
         GamesRoute(
             onGameClick = onGameClick
         )
