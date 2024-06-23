@@ -23,6 +23,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.luisfagundes.designsystem.TryAgain
 import com.luisfagundes.designsystem.component.GameCard
+import com.luisfagundes.designsystem.theme.spacing
 import com.luisfagundes.games.R
 import com.luisfagundes.utils.doNothing
 
@@ -69,7 +70,7 @@ internal fun GamesScreen(
                 ) {
                     item {
                         Text(
-                            modifier = Modifier.padding(16.dp),
+                            modifier = Modifier.padding(MaterialTheme.spacing.default),
                             text = stringResource(R.string.feature_games_recently_played),
                             style = MaterialTheme.typography.titleLarge,
                             fontWeight = FontWeight.Bold
@@ -80,8 +81,8 @@ internal fun GamesScreen(
                             modifier = Modifier
                                 .clickable { onGameClick(game.appId) }
                                 .fillMaxWidth()
-                                .padding(horizontal = 16.dp)
-                                .padding(vertical = 4.dp),
+                                .padding(horizontal = MaterialTheme.spacing.default)
+                                .padding(vertical = MaterialTheme.spacing.small),
                             name = game.name,
                             achievementsUnlocked = game.achievementsUnlocked,
                             achievementsTotal = game.achievementsTotal,

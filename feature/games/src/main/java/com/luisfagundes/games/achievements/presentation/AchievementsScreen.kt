@@ -28,6 +28,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.luisfagundes.designsystem.TryAgain
 import com.luisfagundes.designsystem.component.AchievementCard
 import com.luisfagundes.designsystem.component.SteamHunterTopAppBar
+import com.luisfagundes.designsystem.theme.spacing
 import com.luisfagundes.games.R
 import com.luisfagundes.model.Achievement
 import com.luisfagundes.utils.doNothing
@@ -86,7 +87,7 @@ internal fun AchievementsScreen(
                 is AchievementsUiState.Success -> AchievementsList(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp),
+                        .padding(horizontal = MaterialTheme.spacing.default),
                     achievements = uiState.achievements,
                     onAchievementClick = onAchievementClick
                 )
@@ -113,7 +114,7 @@ private fun Title(text: String) {
         text = text,
         style = MaterialTheme.typography.titleLarge,
         fontWeight = FontWeight.Bold,
-        modifier = Modifier.padding(vertical = 16.dp)
+        modifier = Modifier.padding(vertical = MaterialTheme.spacing.default)
     )
 }
 
@@ -162,7 +163,7 @@ private fun Achievement(
     AchievementCard(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 4.dp),
+            .padding(vertical = MaterialTheme.spacing.verySmall),
         name = item.name,
         unlockedIconUrl = item.unlockedIconUrl,
         lockedIconUrl = item.lockedIconUrl,

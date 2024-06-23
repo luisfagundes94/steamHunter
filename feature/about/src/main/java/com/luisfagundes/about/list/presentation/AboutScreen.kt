@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -17,6 +18,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.luisfagundes.about.model.AboutItem
 import com.luisfagundes.about.model.aboutItemList
+import com.luisfagundes.designsystem.theme.spacing
 
 @Composable
 fun AboutRoute(
@@ -39,7 +41,7 @@ fun AboutScreen(
         items(aboutItemList) { item ->
             Item(
                 modifier = Modifier
-                    .padding(16.dp)
+                    .padding(MaterialTheme.spacing.default)
                     .clickable {
                         onItemClick(
                             item.titleResId,
@@ -68,7 +70,7 @@ private fun Item(
             imageVector = item.icon,
             contentDescription = context.getString(item.titleResId)
         )
-        Spacer(modifier = Modifier.width(16.dp))
+        Spacer(modifier = Modifier.width(MaterialTheme.spacing.default))
         Text(
             text = context.getString(item.titleResId)
         )

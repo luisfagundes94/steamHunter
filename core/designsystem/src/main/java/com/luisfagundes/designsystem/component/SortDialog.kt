@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import com.luisfagundes.designsystem.theme.spacing
 
 @Composable
 fun SortDialog(
@@ -41,14 +42,14 @@ fun SortDialog(
                 Text(
                     text = "Sort by",
                     style = MaterialTheme.typography.titleMedium,
-                    modifier = Modifier.padding(bottom = 16.dp)
+                    modifier = Modifier.padding(bottom = MaterialTheme.spacing.default)
                 )
                 RadioButtonGroup(
                     options = listOf("Name", "Achievement Percentage", "Date"),
                     selectedOption = selectedOption,
                     onOptionSelected = { selectedOption = it }
                 )
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(MaterialTheme.spacing.default))
                 Button(
                     onClick = { onSortOptionSelected(selectedOption) },
                     modifier = Modifier.align(Alignment.End)
@@ -70,7 +71,7 @@ fun RadioButtonGroup(
         options.forEach { option ->
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.padding(vertical = 4.dp)
+                modifier = Modifier.padding(vertical = MaterialTheme.spacing.verySmall)
             ) {
                 RadioButton(
                     selected = option == selectedOption,
@@ -79,7 +80,7 @@ fun RadioButtonGroup(
                 Text(
                     text = option,
                     style = MaterialTheme.typography.titleSmall,
-                    modifier = Modifier.padding(start = 8.dp)
+                    modifier = Modifier.padding(start = MaterialTheme.spacing.small)
                 )
             }
         }

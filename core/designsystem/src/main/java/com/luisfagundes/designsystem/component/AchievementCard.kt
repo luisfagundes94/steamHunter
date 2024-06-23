@@ -26,6 +26,7 @@ import coil.compose.AsyncImage
 import com.luisfagundes.designsystem.R
 import com.luisfagundes.designsystem.theme.SteamHunterTheme
 import com.luisfagundes.designsystem.theme.ThemePreviews
+import com.luisfagundes.designsystem.theme.spacing
 
 @Composable
 fun AchievementCard(
@@ -51,17 +52,17 @@ fun AchievementCard(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .background(MaterialTheme.colorScheme.surface)
-                .padding(16.dp)
+                .padding(MaterialTheme.spacing.default)
         ) {
             AsyncImage(
                 model = if (achieved) unlockedIconUrl else lockedIconUrl,
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .size(64.dp)
-                    .clip(RoundedCornerShape(8.dp))
+                    .size(MaterialTheme.spacing.verySmall)
+                    .clip(RoundedCornerShape(MaterialTheme.spacing.small))
             )
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(MaterialTheme.spacing.default))
             Column(
                 modifier = Modifier
                     .weight(1f)
@@ -72,7 +73,7 @@ fun AchievementCard(
                     style = MaterialTheme.typography.bodyLarge,
                     fontWeight = FontWeight.Bold
                 )
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(MaterialTheme.spacing.verySmall))
                 Text(
                     text = description.ifBlank { hiddenAchievementText },
                     style = MaterialTheme.typography.bodySmall,

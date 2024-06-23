@@ -73,7 +73,8 @@ fun SteamHunterTheme(
     }
 
     CompositionLocalProvider(
-        LocalBackgroundTheme provides backgroundTheme
+        LocalBackgroundTheme provides backgroundTheme,
+        LocalSpacing provides Spacing()
     ) {
         MaterialTheme(
             colorScheme = colorScheme,

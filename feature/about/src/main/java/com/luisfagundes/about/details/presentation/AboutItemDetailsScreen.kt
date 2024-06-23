@@ -18,6 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.luisfagundes.about.R
 import com.luisfagundes.designsystem.component.SteamHunterTopAppBar
+import com.luisfagundes.designsystem.theme.spacing
 import dev.jeziellago.compose.markdowntext.MarkdownText
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -36,7 +37,7 @@ fun AboutItemRoute(
         AboutItemScreen(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(MaterialTheme.spacing.default),
             title = LocalContext.current.getString(titleResId),
             description = LocalContext.current.getString(descriptionResId)
         )
@@ -57,7 +58,7 @@ internal fun AboutItemScreen(
             style = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.Bold
         )
-        Spacer(Modifier.height(8.dp))
+        Spacer(Modifier.height(MaterialTheme.spacing.small))
         MarkdownText(
             markdown = description,
             linkColor = MaterialTheme.colorScheme.primary

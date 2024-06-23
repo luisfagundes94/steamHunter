@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.luisfagundes.designsystem.theme.spacing
 
 @Composable
 fun TryAgain(
@@ -28,7 +29,7 @@ fun TryAgain(
             fontWeight = FontWeight.Bold,
             style = MaterialTheme.typography.titleMedium
         )
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
         Button(
             onClick = onClick
         ) {
