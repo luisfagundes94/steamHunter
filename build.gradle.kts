@@ -5,7 +5,6 @@ buildscript {
     }
     dependencies {
         classpath(libs.android.gradlePlugin)
-        classpath(libs.detekt.gradlePlugin)
     }
 }
 
@@ -18,11 +17,22 @@ plugins {
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.secrets) apply false
     alias(libs.plugins.room) apply false
-    alias(libs.plugins.detekt) apply true
+    alias(libs.plugins.detekt)
     alias(libs.plugins.org.jetbrains.kotlin.android) apply false
     alias(libs.plugins.compose.compiler) apply false
+}
+
+detekt {
+    autoCorrect = true
+    parallel = true
+    config.setFrom(file("config/detekt/detekt.yml"))
 }
 
 subprojects {
     apply(plugin = "io.gitlab.arturbosch.detekt")
 }
+
+dependencies {
+    detektPlugins(libs.detekt.formatting)
+}
+
