@@ -3,9 +3,9 @@ package com.luisfagundes.steamhunter.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.luisfagundes.domain.repository.UserDataRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
 import com.luisfagundes.steamhunter.presentation.MainActivityUiState.Loading
 import com.luisfagundes.steamhunter.presentation.MainActivityUiState.Success
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map

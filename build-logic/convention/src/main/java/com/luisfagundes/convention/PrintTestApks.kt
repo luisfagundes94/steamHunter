@@ -32,7 +32,9 @@ internal fun Project.configurePrintApksTask(extension: AndroidComponentsExtensio
                 javaSources.zip(kotlinSources) { javaDirs, kotlinDirs ->
                     javaDirs + kotlinDirs
                 }
-            } else javaSources ?: kotlinSources
+            } else {
+                javaSources ?: kotlinSources
+            }
 
             if (artifact != null && testSources != null) {
                 tasks.register(
@@ -79,8 +81,9 @@ internal abstract class PrintApkLocationTask : DefaultTask() {
 
         val builtArtifacts = builtArtifactsLoader.get().load(apkFolder.get())
             ?: throw RuntimeException("Cannot load APKs")
-        if (builtArtifacts.elements.size != 1)
+        if (builtArtifacts.elements.size != 1) {
             throw RuntimeException("Expected one APK !")
+        }
         val apk = File(builtArtifacts.elements.single().outputFile).toPath()
         println(apk)
     }

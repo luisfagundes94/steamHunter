@@ -28,7 +28,7 @@ fun SortDialog(
         ) {
             Column(
                 modifier = modifier
-            ){
+            ) {
                 Text(
                     text = "Sort by",
                     style = MaterialTheme.typography.titleMedium,

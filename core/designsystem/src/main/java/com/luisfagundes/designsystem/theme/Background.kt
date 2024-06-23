@@ -2,9 +2,9 @@ package com.luisfagundes.designsystem.theme
 
 import android.content.res.Configuration
 import androidx.compose.runtime.Immutable
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 
 @Immutable

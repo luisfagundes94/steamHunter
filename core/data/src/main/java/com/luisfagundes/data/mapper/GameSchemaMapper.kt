@@ -2,10 +2,10 @@ package com.luisfagundes.data.mapper
 
 import com.luisfagundes.model.Achievement
 import com.luisfagundes.model.AchievementSchema
-import com.luisfagundes.model.AvailableGameStats
-import com.luisfagundes.model.GameSchema
 import com.luisfagundes.model.AchievementSchemaResponse
+import com.luisfagundes.model.AvailableGameStats
 import com.luisfagundes.model.AvailableGameStatsResponse
+import com.luisfagundes.model.GameSchema
 import com.luisfagundes.model.GameSchemaBodyResponse
 import com.luisfagundes.model.GameSchemaResponse
 

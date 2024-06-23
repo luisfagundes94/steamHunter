@@ -2,9 +2,9 @@ package com.luisfagundes.steamhunter.navigation
 
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.luisfagundes.designsystem.icon.SteamHunterIcons
+import com.luisfagundes.about.R as aboutR
 import com.luisfagundes.games.R as gamesR
 import com.luisfagundes.profile.R as profileR
-import com.luisfagundes.about.R as aboutR
 
 enum class TopLevelDestination(
     val selectedIcon: ImageVector,

@@ -11,7 +11,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
-import androidx.navigation.toRoute
 import com.luisfagundes.about.list.navigation.AboutNavigation
 import com.luisfagundes.about.list.navigation.navigateToAbout
 import com.luisfagundes.data.utils.NetworkMonitor

@@ -7,5 +7,4 @@ sealed interface AchievementsUiState {
     data object Empty : AchievementsUiState
     data class Success(val achievements: List<com.luisfagundes.model.Achievement> = emptyList()) : AchievementsUiState
     data object Error : AchievementsUiState
-
 }

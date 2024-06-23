@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.luisfagundes.domain.usecase.GetRecentlyPlayedGames
 import com.luisfagundes.result.Result.Error
 import com.luisfagundes.result.Result.Success
-import dagger.assisted.Assisted
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

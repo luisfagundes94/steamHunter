@@ -1,8 +1,8 @@
 package com.luisfagundes.network.retrofit
 
 import com.luisfagundes.model.GameSchemaBodyResponse
-import com.luisfagundes.model.RecentlyPlayedGamesBodyResponse
 import com.luisfagundes.model.PlayerAchievementsResponse
+import com.luisfagundes.model.RecentlyPlayedGamesBodyResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

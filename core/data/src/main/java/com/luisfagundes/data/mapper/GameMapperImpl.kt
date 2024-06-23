@@ -8,7 +8,7 @@ import com.luisfagundes.model.RecentlyPlayedGamesBodyResponse
 
 private const val IMAGE_BASE_URL = "https://media.steampowered.com/steamcommunity/public/images/apps/"
 
-object GameMapperImpl: GameMapper {
+object GameMapperImpl : GameMapper {
 
     override fun Game.mergeWith(achievements: List<Achievement>?): Game {
         return Game(

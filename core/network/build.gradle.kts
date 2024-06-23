@@ -15,7 +15,6 @@ secrets {
     defaultPropertiesFileName = "api.properties"
 }
 
-
 dependencies {
     api(libs.kotlinx.datetime)
     api(projects.core.common)

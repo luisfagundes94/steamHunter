@@ -5,7 +5,6 @@ import androidx.navigation.compose.composable
 import com.luisfagundes.games.achievements.presentation.AchievementsRoute
 import kotlinx.serialization.Serializable
 
-
 @Serializable
 data class AchievementsRoute(
     val gameId: Int

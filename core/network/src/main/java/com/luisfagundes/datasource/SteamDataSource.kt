@@ -1,8 +1,8 @@
 package com.luisfagundes.datasource
 
 import com.luisfagundes.model.GameSchemaBodyResponse
-import com.luisfagundes.model.RecentlyPlayedGamesBodyResponse
 import com.luisfagundes.model.PlayerAchievementsResponse
+import com.luisfagundes.model.RecentlyPlayedGamesBodyResponse
 
 interface SteamDataSource {
     suspend fun getRecentlyPlayedGames(steamId: String): RecentlyPlayedGamesBodyResponse

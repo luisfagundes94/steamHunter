@@ -3,8 +3,8 @@ package com.luisfagundes.network.retrofit
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.luisfagundes.datasource.SteamDataSource
 import com.luisfagundes.model.GameSchemaBodyResponse
-import com.luisfagundes.model.RecentlyPlayedGamesBodyResponse
 import com.luisfagundes.model.PlayerAchievementsResponse
+import com.luisfagundes.model.RecentlyPlayedGamesBodyResponse
 import com.luisfagundes.network.BuildConfig
 import kotlinx.serialization.json.Json
 import okhttp3.Call

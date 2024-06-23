@@ -65,7 +65,7 @@ private fun Item(
         )
         Spacer(modifier = Modifier.width(16.dp))
         Text(
-           text = context.getString(item.titleResId)
+            text = context.getString(item.titleResId)
         )
     }
 }

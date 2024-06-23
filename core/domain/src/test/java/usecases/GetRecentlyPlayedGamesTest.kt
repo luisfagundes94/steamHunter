@@ -1,20 +1,20 @@
 package usecases
 
+import com.luisfagundes.domain.repository.SteamRepository
+import com.luisfagundes.domain.repository.UserDataRepository
+import com.luisfagundes.domain.usecase.GetRecentlyPlayedGames
+import com.luisfagundes.result.Result
+import com.luisfagundes.testing.model.STEAM_ID
+import com.luisfagundes.testing.model.games
+import com.luisfagundes.testing.model.userData
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
-import com.luisfagundes.result.Result
 import org.junit.Before
 import org.junit.Test
-import com.luisfagundes.domain.repository.SteamRepository
-import com.luisfagundes.domain.repository.UserDataRepository
-import com.luisfagundes.domain.usecase.GetRecentlyPlayedGames
-import com.luisfagundes.testing.model.STEAM_ID
-import com.luisfagundes.testing.model.games
-import com.luisfagundes.testing.model.userData
 import kotlin.test.assertEquals
 
 @ExperimentalCoroutinesApi

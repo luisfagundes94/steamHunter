@@ -1,6 +1,5 @@
 import com.android.build.api.dsl.ApplicationExtension
 import com.luisfagundes.convention.configureAndroidCompose
-import com.luisfagundes.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType

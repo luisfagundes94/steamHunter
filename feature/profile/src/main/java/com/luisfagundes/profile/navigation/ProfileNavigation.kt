@@ -12,7 +12,7 @@ object ProfileNavigation
 fun NavController.navigateToProfile(navOptions: NavOptions) = navigate(ProfileNavigation, navOptions)
 
 fun NavGraphBuilder.profileScreen() {
-    composable<ProfileNavigation>{
+    composable<ProfileNavigation> {
         // ProfileScreen()
     }
 }
