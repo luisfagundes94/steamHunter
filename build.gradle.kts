@@ -1,5 +1,3 @@
-import io.gitlab.arturbosch.detekt.Detekt
-
 buildscript {
     repositories {
         google()
@@ -23,4 +21,8 @@ plugins {
     alias(libs.plugins.detekt) apply true
     alias(libs.plugins.org.jetbrains.kotlin.android) apply false
     alias(libs.plugins.compose.compiler) apply false
+}
+
+subprojects {
+    apply(plugin = "io.gitlab.arturbosch.detekt")
 }
