@@ -10,8 +10,6 @@ import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarDuration.Indefinite
@@ -19,8 +17,6 @@ import androidx.compose.material3.SnackbarDuration.Short
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult.ActionPerformed
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -36,16 +32,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavDestination
-import androidx.navigation.NavDestination.Companion.hierarchy
 import com.luisfagundes.designsystem.component.SteamHunterBackground
-import com.luisfagundes.designsystem.component.SteamHunterNavigationBar
-import com.luisfagundes.designsystem.component.SteamHunterNavigationBarItem
-import com.luisfagundes.designsystem.component.SteamHunterTopAppBar
-import com.luisfagundes.designsystem.icon.SteamHunterIcons
 import com.luisfagundes.steamhunter.R
 import com.luisfagundes.steamhunter.navigation.SteamHunterNavHost
-import com.luisfagundes.steamhunter.navigation.TopLevelDestination
 
 @Composable
 fun SteamHunterApp(
@@ -79,7 +68,7 @@ fun SteamHunterApp(
 }
 
 @Composable
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
+@OptIn(ExperimentalComposeUiApi::class)
 internal fun SteamHunterApp(
     appState: SteamHunterAppState,
     snackbarHostState: SnackbarHostState,
@@ -97,7 +86,7 @@ internal fun SteamHunterApp(
         snackbarHost = { SnackbarHost(snackbarHostState) },
         bottomBar = {
             if (appState.shouldShowBottomBar) {
-                SteamHunterBottomBar(
+                SteamHunterBottomBarConfig(
                     destinations = appState.topLevelDestinations,
                     onNavigateToDestination = appState::navigateToTopLevelDestination,
                     currentDestination = appState.currentDestination,
@@ -117,34 +106,15 @@ internal fun SteamHunterApp(
                     ),
                 ),
         ) {
+            val destination = appState.currentTopLevelDestination
             Column(Modifier.fillMaxSize()) {
-                val destination = appState.currentTopLevelDestination
-
                 if (destination != null) {
-                    when (destination) {
-                        TopLevelDestination.GAMES ->  SteamHunterTopAppBar(
-                            titleRes = destination.titleTextId,
-                            navigationIcon = SteamHunterIcons.Search,
-                            navigationIconContentDescription = stringResource(
-                                id = R.string.feature_settings_top_app_bar_navigation_icon_description,
-                            ),
-                            actionIcon = SteamHunterIcons.Sort,
-                            actionIconContentDescription = stringResource(R.string.sort_list),
-                            colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                                containerColor = Color.Transparent,
-                            ),
-                            onActionClick = { onTopAppBarActionClick() },
-                            onNavigationClick = { appState.navigateToSearch() },
-                        )
-                        else -> SteamHunterTopAppBar(
-                            titleRes = destination.titleTextId,
-                            colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                                containerColor = Color.Transparent,
-                            ),
-                        )
-                    }
+                    SteamHunterTopAppBarConfig(
+                        destination = destination,
+                        onTopAppBarActionClick = onTopAppBarActionClick,
+                        appState = appState
+                    )
                 }
-
                 SteamHunterNavHost(
                     appState = appState,
                     onShowSnackBar = { message, action ->
@@ -166,42 +136,3 @@ internal fun SteamHunterApp(
         }
     }
 }
-
-@Composable
-private fun SteamHunterBottomBar(
-    destinations: List<TopLevelDestination>,
-    onNavigateToDestination: (TopLevelDestination) -> Unit,
-    currentDestination: NavDestination?,
-    modifier: Modifier = Modifier,
-) {
-    SteamHunterNavigationBar(
-        modifier = modifier,
-    ) {
-        destinations.forEach { destination ->
-            val selected = currentDestination.isTopLevelDestinationInHierarchy(destination)
-            SteamHunterNavigationBarItem(
-                selected = selected,
-                onClick = { onNavigateToDestination(destination) },
-                icon = {
-                    Icon(
-                        imageVector = destination.selectedIcon,
-                        contentDescription = null,
-                    )
-                },
-                selectedIcon = {
-                    Icon(
-                        imageVector = destination.selectedIcon,
-                        contentDescription = null,
-                    )
-                },
-                label = { Text(stringResource(destination.iconTextId)) },
-                modifier = modifier,
-            )
-        }
-    }
-}
-
-private fun NavDestination?.isTopLevelDestinationInHierarchy(destination: TopLevelDestination) =
-    this?.hierarchy?.any {
-        it.route?.contains(destination.name, true) ?: false
-    } ?: false
