@@ -26,6 +26,7 @@ detekt {
     autoCorrect = true
     parallel = true
     config.setFrom(file("config/detekt/detekt.yml"))
+    buildUponDefaultConfig = false
 }
 
 subprojects {
