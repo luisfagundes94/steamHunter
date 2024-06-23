@@ -11,6 +11,7 @@ Features:
 <p float="left">
   <img src="https://github.com/luisfagundes94/steamHunter/blob/master/screenshot/games.png" width="200" /> 
   <img src="https://github.com/luisfagundes94/steamHunter/blob/master/screenshot/achievements.png" width="200" />
+  <img src="https://github.com/luisfagundes94/steamHunter/blob/master/screenshot/about.png" width="200" />
 </p>
 
 ## Architecture
