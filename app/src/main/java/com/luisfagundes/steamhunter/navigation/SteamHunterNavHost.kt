@@ -32,8 +32,8 @@ fun SteamHunterNavHost(
         )
         profileScreen()
         aboutScreen(
-            onItemClick = { descriptionResId ->
-                navController.navigate(AboutItemNavigation(descriptionResId))
+            onItemClick = { titleId, descriptionResId ->
+                navController.navigate(AboutItemNavigation(titleId, descriptionResId))
             }
         )
 

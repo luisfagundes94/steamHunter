@@ -13,7 +13,7 @@ object AboutNavigation
 fun NavController.navigateToAbout(navOptions: NavOptions) = navigate(AboutNavigation, navOptions)
 
 fun NavGraphBuilder.aboutScreen(
-    onItemClick: (descriptionId: Int) -> Unit
+    onItemClick: (titleId: Int, descriptionId: Int) -> Unit
 ) {
     composable<AboutNavigation> {
         AboutRoute(

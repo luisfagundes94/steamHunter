@@ -4,4 +4,6 @@
     <string name="feature_about_achievements_not_showing">Achievements not showing</string>
     <string name="feature_about_achievements_not_showing_description">You will need to update your Steam profile privacy settings in order for the app to work properly.</string>
     <string name="feature_about_details">Details</string>
+    <string name="feature_about_request_or_bug_report">Feature Requests or Bug Reports</string>
+    <string name="feature_about_request_or_bug_report_description">Hi! My name is Luis Felipe Fagundes and I\'ve been solo developing this app to help you manage your steam achievements. If you\'d like to request a feature or file a bug, please use the issues tab on this [github project](https://github.com/luisfagundes94/steamHunter), or send me an email at luisfelipecf94@gmail.com</string>
 </resources>

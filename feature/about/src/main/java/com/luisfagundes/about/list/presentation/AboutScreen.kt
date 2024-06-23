@@ -20,7 +20,7 @@ import com.luisfagundes.about.model.aboutItemList
 
 @Composable
 fun AboutRoute(
-    onItemClick: (descriptionId: Int) -> Unit,
+    onItemClick: (titleId: Int, descriptionId: Int) -> Unit,
 ) {
     AboutScreen(
         modifier = Modifier.fillMaxWidth(),
@@ -31,7 +31,7 @@ fun AboutRoute(
 @Composable
 fun AboutScreen(
     modifier: Modifier = Modifier,
-    onItemClick: (descriptionId: Int) -> Unit = {},
+    onItemClick: (titleId: Int, descriptionId: Int) -> Unit,
 ) {
     LazyColumn(
         modifier = modifier
@@ -40,7 +40,12 @@ fun AboutScreen(
             Item(
                 modifier = Modifier
                     .padding(16.dp)
-                    .clickable { onItemClick(item.descriptionResId) },
+                    .clickable {
+                        onItemClick(
+                            item.titleResId,
+                            item.descriptionResId
+                        )
+                    },
                 item = item
             )
             HorizontalDivider(

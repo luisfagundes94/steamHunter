@@ -8,6 +8,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AboutItemNavigation(
+    val titleResId: Int,
     val descriptionResId: Int,
 )
 
@@ -18,6 +19,7 @@ fun NavGraphBuilder.aboutItemScreen(
         val args = it.toRoute<AboutItemNavigation>()
         AboutItemRoute(
             onBackClick = onBackClick,
+            titleResId = args.titleResId,
             descriptionResId = args.descriptionResId
         )
     }

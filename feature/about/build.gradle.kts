@@ -10,5 +10,6 @@ android {
 
 dependencies {
     implementation(projects.core.data)
+    implementation(libs.markdown)
     implementation(libs.kotlinx.serialization.json)
 }
