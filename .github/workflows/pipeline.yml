@@ -15,8 +15,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "test"
- test:
+ unit-testing:
     name: Run unit tests
     runs-on: ubuntu-latest
 
@@ -33,3 +32,11 @@ jobs:
       - name: Unit tests
         run: ./gradlew testDebugUnitTest
 
+ code-analyzer:
+    name: Run code analyzer
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Detekt
+        run: ./gradlew detekt
