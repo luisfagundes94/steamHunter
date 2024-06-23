@@ -59,7 +59,7 @@ fun AchievementCard(
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .size(MaterialTheme.spacing.verySmall)
+                    .size(MaterialTheme.spacing.extraLarge)
                     .clip(RoundedCornerShape(MaterialTheme.spacing.small))
             )
             Spacer(modifier = Modifier.width(MaterialTheme.spacing.default))
