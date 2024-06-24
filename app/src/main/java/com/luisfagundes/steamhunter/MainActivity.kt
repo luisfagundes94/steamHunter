@@ -106,9 +106,9 @@ private fun shouldUseDarkTheme(
 ): Boolean = when (uiState) {
     Loading -> isSystemInDarkTheme()
     is Success -> when (uiState.userData.darkThemeConfig) {
-        com.luisfagundes.model.DarkThemeConfig.FOLLOW_SYSTEM -> isSystemInDarkTheme()
-        com.luisfagundes.model.DarkThemeConfig.LIGHT -> false
-        com.luisfagundes.model.DarkThemeConfig.DARK -> true
+        DarkThemeConfig.FOLLOW_SYSTEM -> isSystemInDarkTheme()
+        DarkThemeConfig.LIGHT -> false
+        DarkThemeConfig.DARK -> true
     }
 }
 
