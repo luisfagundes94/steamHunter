@@ -5,6 +5,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 suspend fun <T> safeAsyncRequest(
     dispatcher: CoroutineDispatcher = Dispatchers.IO,
@@ -14,7 +15,7 @@ suspend fun <T> safeAsyncRequest(
         val data = withContext(dispatcher) { call() }
         Result.Success(data)
     } catch (exception: Exception) {
-        Log.e("safeAsyncRequest", exception.stackTraceToString())
+        Timber.tag("safeAsyncRequest").e(exception.stackTraceToString())
         Result.Error(exception)
     }
 }
