@@ -40,13 +40,16 @@ class SteamHunterPreferencesDataSource @Inject constructor(
             }
         }
     }
+
     suspend fun setUserSteamId(id: String) {
         try {
             userPreferences.updateData {
                 it.copy { this.steamId = id }
             }
         } catch (ioException: IOException) {
-            Timber.tag("SteamHunterPreferences").e(ioException, "Failed to update user preferences")
+            Timber
+                .tag("SteamHunterPreferences")
+                .e(ioException, "Failed to update user preferences")
         }
     }
 }
