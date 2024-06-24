@@ -29,7 +29,6 @@ android {
 
     buildTypes {
         debug {
-            isMinifyEnabled = false
             applicationIdSuffix = SteamHunterBuildType.DEBUG.applicationIdSuffix
         }
         release {
