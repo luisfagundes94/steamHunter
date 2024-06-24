@@ -84,7 +84,7 @@ internal fun InternalSteamHunterApp(
                     destinations = appState.topLevelDestinations,
                     onNavigateToDestination = appState::navigateToTopLevelDestination,
                     currentDestination = appState.currentDestination,
-                    modifier = Modifier.testTag("SteamHunterBottomBar "),
+                    modifier = Modifier.testTag("SteamHunterBottomBar"),
                 )
             }
         },
