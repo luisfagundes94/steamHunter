@@ -1,6 +1,5 @@
 package com.luisfagundes.data.datasource
 
-import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.IOException
 import com.luisfagundes.model.DarkThemeConfig
@@ -9,6 +8,7 @@ import com.luisfagundes.steamhunter.data.DarkThemeConfigProto
 import com.luisfagundes.steamhunter.data.UserPreferences
 import com.luisfagundes.steamhunter.data.copy
 import kotlinx.coroutines.flow.map
+import timber.log.Timber
 import javax.inject.Inject
 
 class SteamHunterPreferencesDataSource @Inject constructor(
@@ -46,7 +46,7 @@ class SteamHunterPreferencesDataSource @Inject constructor(
                 it.copy { this.steamId = id }
             }
         } catch (ioException: IOException) {
-            Log.e("SteamHunterPreferences", "Failed to update user preferences", ioException)
+            Timber.tag("SteamHunterPreferences").e(ioException, "Failed to update user preferences")
         }
     }
 }
