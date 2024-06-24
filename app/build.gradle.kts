@@ -29,11 +29,12 @@ android {
 
     buildTypes {
         debug {
-            applicationIdSuffix = com.luisfagundes.convention.SteamHunterBuildType.DEBUG.applicationIdSuffix
+            isMinifyEnabled = false
+            applicationIdSuffix = SteamHunterBuildType.DEBUG.applicationIdSuffix
         }
         release {
             isMinifyEnabled = true
-            applicationIdSuffix = com.luisfagundes.convention.SteamHunterBuildType.RELEASE.applicationIdSuffix
+            applicationIdSuffix = SteamHunterBuildType.RELEASE.applicationIdSuffix
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
