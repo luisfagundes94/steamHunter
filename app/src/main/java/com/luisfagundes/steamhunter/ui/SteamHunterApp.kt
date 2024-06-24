@@ -13,10 +13,8 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarDuration.Indefinite
-import androidx.compose.material3.SnackbarDuration.Short
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.SnackbarResult.ActionPerformed
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -57,7 +55,7 @@ fun SteamHunterApp(
             }
         }
 
-        SteamHunterApp(
+        InternalSteamHunterApp(
             appState = appState,
             snackbarHostState = snackBarHostState,
             onTopAppBarActionClick = { showSettingsDialog = true },
@@ -67,7 +65,7 @@ fun SteamHunterApp(
 
 @Composable
 @OptIn(ExperimentalComposeUiApi::class)
-internal fun SteamHunterApp(
+internal fun InternalSteamHunterApp(
     appState: SteamHunterAppState,
     snackbarHostState: SnackbarHostState,
     onTopAppBarActionClick: () -> Unit,
