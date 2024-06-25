@@ -9,7 +9,8 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.data)
+    implementation(projects.core.domain)
+    implementation(projects.core.common)
     implementation(projects.core.testing)
     implementation(libs.accompanist.permissions)
     implementation(libs.kotlinx.serialization.json)

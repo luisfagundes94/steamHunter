@@ -9,7 +9,8 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.data)
+    implementation(projects.core.domain)
+    implementation(projects.core.common)
     implementation(libs.markdown)
     implementation(libs.kotlinx.serialization.json)
 }
