@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="17" />
+    <bytecodeTargetLevel target="17">
+      <module name="SteamHunter.app" target="21" />
+      <module name="SteamHunter.core.common" target="21" />
+      <module name="SteamHunter.core.data" target="21" />
+      <module name="SteamHunter.core.datastore" target="21" />
+      <module name="SteamHunter.core.designsystem" target="21" />
+      <module name="SteamHunter.core.domain" target="21" />
+      <module name="SteamHunter.core.network" target="21" />
+      <module name="SteamHunter.core.protodata" target="21" />
+      <module name="SteamHunter.core.testing" target="21" />
+      <module name="SteamHunter.core.ui" target="21" />
+      <module name="SteamHunter.feature.about" target="21" />
+      <module name="SteamHunter.feature.games" target="21" />
+      <module name="SteamHunter.feature.profile" target="21" />
+      <module name="SteamHunter.feature.search" target="21" />
+    </bytecodeTargetLevel>
   </component>
 </project>
